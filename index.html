@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tito Silversax | Ambient Saxophonist</title>
+  <meta name="description" content="Tito Silversax is a Puerto Rican-American ambient saxophonist in Cleveland, Ohio. Spirit-first improvisation, modal soundscapes, and feeling-first tools for musicians." />
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://titosilversax.com/" />
+  <meta property="og:title" content="Tito Silversax | Ambient Saxophonist" />
+  <meta property="og:description" content="Spirit-first improvisation, modal soundscapes, and feeling-first tools for musicians." />
+  <meta property="og:image" content="https://titosilversax.com/images/og-preview.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SF1Y8CMTMR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SF1Y8CMTMR');
+  </script>
+
+  <!-- Vercel Analytics -->
+  <script defer src="/_vercel/insights/script.js"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/css/theme.css">
+
+  <style>
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      padding: 128px 0 0;
+      overflow: hidden;
+      border-bottom: 1px solid var(--rule);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      align-items: stretch;
+    }
+    .hero-copy { padding: 0 24px 56px; }
+    .hero-edge {
+      display: none;
+    }
+    .hero-headline {
+      font-family: var(--ff-display);
+      font-size: clamp(3rem, 12vw, 6.4rem);
+      line-height: 0.92;
+      color: var(--paper);
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+    .hero-sub {
+      font-size: 1.08rem;
+      color: var(--emulsion);
+      line-height: 1.75;
+      max-width: 480px;
+      margin-bottom: 32px;
+    }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+    .hero-quote {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--ff-mono);
+      font-size: 0.82rem;
+      font-style: normal;
+      color: var(--sepia);
+      padding: 10px 14px;
+      border: 1px dashed var(--rule-strong);
+      border-radius: 2px;
+    }
+    .hero-quote::before { content: '“'; color: var(--light-leak); font-size: 1.1rem; }
+
+    .hero-frame {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      background: var(--leader-2);
+      overflow: hidden;
+      border-left: 1px solid var(--rule);
+    }
+    .hero-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(0.55) sepia(0.22) contrast(1.15) brightness(0.85);
+    }
+    .hero-frame::after {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(105deg, rgba(255,138,51,0.4) 0%, rgba(255,138,51,0) 32%),
+        linear-gradient(0deg, rgba(14,15,16,0.75) 0%, transparent 42%);
+      mix-blend-mode: multiply;
+    }
+    .hero-frame-tag {
+      position: absolute;
+      top: 18px; right: 18px;
+      z-index: 2;
+      font-family: var(--ff-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      color: var(--paper);
+      background: rgba(14,15,16,0.6);
+      border: 1px solid rgba(236,232,222,0.25);
+      padding: 5px 9px;
+      border-radius: 2px;
+    }
+    .hero-frame-caption {
+      position: absolute;
+      left: 18px; bottom: 18px; right: 18px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--ff-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--paper);
+    }
+    .hero-frame-caption .rec-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--light-leak);
+      box-shadow: 0 0 8px var(--light-leak);
+      flex-shrink: 0;
+    }
+    .hero-edgecode {
+      position: absolute;
+      left: 6px; top: 0; bottom: 0;
+      writing-mode: vertical-rl;
+      display: none;
+      align-items: center;
+      font-family: var(--ff-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      color: var(--base-gray);
+      z-index: 2;
+    }
+
+    @media (min-width: 900px) {
+      .hero-grid { grid-template-columns: 1.05fr 0.95fr; gap: 0; min-height: 78vh; }
+      .hero-copy { padding: 40px 56px 56px; display: flex; flex-direction: column; justify-content: center; }
+      .hero-frame { aspect-ratio: auto; }
+      .hero-edgecode { display: flex; }
+    }
+
+    /* ── ABOUT / SESSION NOTES ── */
+    .about { padding: 88px 0; }
+    .about-grid { display: grid; grid-template-columns: 1fr; gap: 44px; align-items: start; }
+    .about-frames { display: flex; gap: 14px; }
+    .about-frame {
+      position: relative;
+      flex: 1;
+      border: 1px solid var(--rule);
+      background: var(--leader-2);
+      overflow: hidden;
+    }
+    .about-frame img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.6) sepia(0.18) contrast(1.12) brightness(0.92); }
+    .about-frame:first-child { aspect-ratio: 3/4; }
+    .about-frame:last-child { aspect-ratio: 3/4; }
+    .about-frame-no {
+      position: absolute; top: 10px; left: 10px;
+      font-family: var(--ff-mono); font-size: 0.65rem; color: var(--paper);
+      background: rgba(14,15,16,0.55); padding: 3px 7px; border-radius: 2px;
+      letter-spacing: 0.05em;
+    }
+    .about-notes { font-family: var(--ff-body); }
+    .about-body { font-size: 1.02rem; color: var(--emulsion); line-height: 1.85; }
+    .about-body em { color: var(--sepia); font-style: italic; }
+    .about-marginalia {
+      margin-top: 24px;
+      padding: 14px 16px;
+      border-left: 2px solid var(--light-leak);
+      background: var(--leader-2);
+      font-family: var(--ff-mono);
+      font-size: 0.78rem;
+      color: var(--base-gray);
+      line-height: 1.7;
+    }
+    @media (min-width: 860px) {
+      .about-grid { grid-template-columns: 0.85fr 1.15fr; gap: 56px; }
+    }
+
+    /* ── OFFERINGS TEASER / REEL INDEX ── */
+    .reel { padding: 0 0 88px; }
+    .reel-index { list-style: none; margin: 28px 0 32px; }
+    .reel-index li {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--rule);
+      font-family: var(--ff-mono);
+    }
+    .reel-index li:first-child { border-top: 1px solid var(--rule); }
+    .reel-index .num { color: var(--light-leak); font-size: 0.85rem; flex-shrink: 0; width: 28px; }
+    .reel-index .name { color: var(--paper); font-size: 1rem; font-family: var(--ff-body); font-weight: 600; }
+    .reel-index .tag { margin-left: auto; color: var(--base-gray); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* ── COMMUNITY / CONTACT ── */
+    .strip-section { padding: 72px 0; text-align: center; }
+    .strip-section .section-lede { margin: 0 auto 28px; }
+
+    .contact { padding: 96px 0; text-align: center; position: relative; }
+    .contact-heading { font-family: var(--ff-display); font-size: clamp(2.6rem, 9vw, 5.2rem); color: var(--paper); text-transform: uppercase; margin-bottom: 14px; }
+    .contact-sub { font-size: 0.98rem; color: var(--base-gray); margin: 0 auto 28px; max-width: 400px; line-height: 1.75; }
+    .contact-email {
+      font-family: var(--ff-mono);
+      font-size: clamp(1rem, 3vw, 1.3rem);
+      color: var(--light-leak);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,138,51,0.4);
+      padding-bottom: 3px;
+      transition: color 0.2s, border-color 0.2s;
+      display: inline-block;
+    }
+    .contact-email:hover { color: var(--paper); border-color: var(--paper); }
+  </style>
+</head>
+<body>
+<!--
+THESIS: The site as Tito's own hand-processed recording — imperfection is proof of a real, lived, spirit-first practice, not a template's polish.
+OWN-WORLD: Near-black leader ground, light-leak orange as the single hard accent, stamped Anton display caps, Archivo body, JetBrains Mono for frame/metadata labels; content banded in numbered frames with sprocket chrome and grain.
+STORY: A visitor understands Tito's music and offerings are handmade and marked by real practice, and takes one clear next action per page.
+FIRST VIEWPORT: Full-bleed frame-strip hero — headline and CTAs left, a single lit "frame" of Tito playing right, sprocket rail and edge-code between them, light-leak sweeping the frame.
+FORM: Hand-Processed Film (challenger, locked over assigned "Working Manuscript"), seed key f69801ae.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
+-->
+
+  <!-- ══════════════════════════════
+       NAV
+       ══════════════════════════════ -->
+  <nav class="nav" id="nav">
+    <a class="nav-logo" href="/">
+      <img src="/images/logo.webp" alt="Tito Silversax" width="40" height="40">
+      <span class="nav-logo-mark"><span class="nav-hide-mobile">7247 · E7 · 16MM</span><strong>Tito Silversax</strong></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="/offers">Offers</a></li>
+      <li class="nav-hide-mobile"><a href="/compendium">The Compendium</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+  </script>
+
+  <!-- ══════════════════════════════
+       HERO
+       ══════════════════════════════ -->
+  <section class="hero" id="home">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="frame-no">FRAME 01</span> · Cleveland, OH</span>
+        <h1 class="hero-headline">Tito<br>Silversax</h1>
+        <p class="hero-sub">
+          Spirit-first improvisation. Modal soundscapes for the seasons
+          when music is the only thing that understands you.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn-primary" href="https://titosilversax.bandcamp.com/" target="_blank" rel="noopener">
+            Listen on Bandcamp
+          </a>
+          <a class="btn-secondary" href="/offers">Explore the Offers</a>
+        </div>
+        <p class="hero-quote">Damn the rules — it's the feeling that counts.</p>
+      </div>
+      <div class="hero-frame">
+        <div class="hero-edgecode">TITO SILVERSAX · SPIRIT-FIRST</div>
+        <img src="/images/tito-playing.webp" alt="Tito Silversax playing tenor saxophone" width="960" height="1100">
+        <span class="hero-frame-tag">03A</span>
+        <div class="hero-frame-caption"><span class="rec-dot"></span> Live take · no click track</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════
+       ABOUT
+       ══════════════════════════════ -->
+  <section class="about" id="about">
+    <div class="container container--wide">
+      <div class="about-grid">
+        <div class="about-frames">
+          <div class="about-frame">
+            <span class="about-frame-no">04</span>
+            <img src="/images/tito-portrait.webp" alt="Tito Silversax with tenor saxophone" width="340" height="453">
+          </div>
+          <div class="about-frame">
+            <span class="about-frame-no">05</span>
+            <img src="/images/tito-playing.webp" alt="Tito playing tenor saxophone" width="340" height="453" loading="lazy">
+          </div>
+        </div>
+        <div class="about-notes">
+          <span class="eyebrow"><span class="frame-no">SESSION NOTES</span></span>
+          <h2 class="section-heading" style="font-size: clamp(1.7rem, 4.5vw, 2.6rem); text-transform:none;">If music has ever felt like the only thing that understood you</h2>
+          <p style="font-family: var(--ff-mono); color: var(--sepia); font-size: 0.85rem; margin-bottom: 18px;">You're in the right place.</p>
+          <p class="about-body">
+            I'm Tito — a Puerto Rican-American ambient saxophonist and
+            state-certified peer support specialist in Cleveland, Ohio.
+            Drawing on mystical experience, contemplative Christian faith,
+            and Taíno roots, I play spirit-first, swimming in what Toru
+            Takemitsu called the sea of tonality: improvisation over my own
+            arrangements, with advanced harmony as the poetic language.
+            I wrote <em>The Saxophonist's Compendium</em> and
+            <em>The Emotional Star Map</em>, and I play out in Cleveland's
+            jazz and improv scene. Sam Newsome, Takemitsu, Debussy, Satie,
+            Beethoven, Tomasz Stańko, and Stephan Micus shape my ear;
+            Coltrane and Miles Davis remain my muses.
+          </p>
+          <p class="about-marginalia">Peer Support · Modal Music — every recording and every guide comes from the same practice, not a course written about it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══════════════════════════════
+       OFFERINGS TEASER / REEL INDEX
+       ══════════════════════════════ -->
+  <section class="reel" id="offerings">
+    <div class="container" style="padding-top: 72px;">
+      <span class="eyebrow"><span class="frame-no">REEL B</span> · Offers</span>
+      <h2 class="section-heading">Tools built<br>feeling-first</h2>
+      <p class="section-lede" style="margin-bottom: 8px;">
+        Every tool here maps a feeling to a mode, a soundscape, or a session —
+        no theory required.
+      </p>
+      <ul class="reel-index">
+        <li><span class="num">01</span><span class="name">The Emotional Star Map</span><span class="tag">Free → $27</span></li>
+        <li><span class="num">02</span><span class="name">The Saxophonist's Compendium</span><span class="tag">$27</span></li>
+        <li><span class="num">03</span><span class="name">A Contemplative Music Practice in a Box</span><span class="tag">$97</span></li>
+        <li><span class="num">04</span><span class="name">Peer Support Sessions</span><span class="tag">Sliding scale</span></li>
+      </ul>
+      <a class="btn-primary" href="/offers">Explore the Offers</a>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══════════════════════════════
+       COMMUNITY
+       ══════════════════════════════ -->
+  <section class="strip-section">
+    <div class="container">
+      <span class="eyebrow" style="justify-content:center;"><span class="frame-no">REEL C</span> · Community</span>
+      <h2 class="section-heading">Meditative<br>Musicians</h2>
+      <p class="section-lede" style="margin: 0 auto 28px;">
+        A small group of musicians exploring sound as a contemplative practice —
+        tuning systems, sacred geometry, improvisation, and the inner work that
+        makes it all mean something. Come hang out.
+      </p>
+      <a class="btn-secondary" href="https://www.skool.com/meditative-musicians-6593/about" target="_blank" rel="noopener">Join the Community</a>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══════════════════════════════
+       CONTACT
+       ══════════════════════════════ -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <span class="eyebrow" style="justify-content:center;"><span class="frame-no">FRAME 21</span> · Get in touch</span>
+      <h2 class="contact-heading">Let's talk.</h2>
+      <p class="contact-sub">
+        Whether you have questions, want to work together, or just want to say hi —
+        I'd love to hear from you.
+      </p>
+      <a class="contact-email" href="mailto:hello@titosilversax.com">hello@titosilversax.com</a>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════
+       FOOTER
+       ══════════════════════════════ -->
+  <footer class="footer">
+    <div class="container container--wide">
+      <div class="footer-grid">
+        <div>
+          <span class="footer-logo">Tito Silversax</span>
+          <p class="footer-tagline">Healing guidance through music, peer support, and lived experience.</p>
+        </div>
+        <div>
+          <div class="footer-social">
+            <a href="https://youtube.com/@titosilversax" target="_blank" rel="noopener">YouTube</a>
+            <a href="https://instagram.com/titosilversax" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://titosilversax.bandcamp.com/" target="_blank" rel="noopener">Bandcamp</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-nav">
+            <a href="/offers">Offers</a>
+            <a href="#contact">Contact</a>
+            <a href="/legal#privacy">Privacy</a>
+            <a href="/legal#terms">Terms</a>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:36px; padding-top:24px; border-top:1px solid var(--rule);">
+        <p class="footer-legal">
+          <a href="mailto:hello@titosilversax.com">hello@titosilversax.com</a>
+          &nbsp;·&nbsp; This is peer support, not therapy or medical treatment.
+          &nbsp;·&nbsp; © 2026 Tito Silversax
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
