@@ -4,68 +4,81 @@
 
 ## World
 
-**Hand-Processed Film.** A strip of 16mm carrying scratches, uneven chemistry, and light leaks — the emulsion itself joins the recording. Tito is a recording artist first; every soundscape and guide is a session that survived being made. The site treats itself as the archive that recovered them: numbered reels, frame-banded content, sprocket chrome, one hard accent (light-leak orange) marking whatever is alive on the page right now.
+**Night Sky / Aurora Star Chart.** A deep indigo-black sky carrying a starfield and soft aurora light — violet, coral, cyan, gold moving through the dark. This isn't decorative sci-fi: Tito's own product is *The Emotional Star Map*, which literally maps feeling onto constellation. The site lives in the same sky the product describes, rather than illustrating it from outside.
 
-Locked via a direction round (concept-seed key `f69801ae`) as a competitive challenger over the assigned direction ("The Working Manuscript" — hand-copied jazz real-book pages). Replaced the prior world entirely (dark purple/gold "mystic night sky," Cormorant Garamond + Great Vibes + Inter).
+This is the world's second visual identity in this build. The first, **Hand-Processed Film** (a 16mm-archive metaphor — frame numbers, sprocket chrome, light-leak orange on warm near-black), shipped first and is preserved in git history and the Revision history section below. The user asked for a full revamp toward "prism, corals, rays of light, magical worlds... neon with black night skies," which is a change of world, not a palette tweak on the old one — handled accordingly.
 
 Direction contract lives in an HTML comment at the top of `index.html`'s `<body>`.
 
 ## Tokens
 
-Defined in `assets/css/theme.css`, shared by every page (no more per-page duplicated `<style>` blocks).
+Defined in `assets/css/theme.css`, shared by every page.
 
 | Token | Value | Role |
 |---|---|---|
-| `--leader` | `#171310` | Page ground — warm film-base near-black, not a neutral designer-app black |
-| `--leader-2` | `#201a15` | Raised surface (nav, card bars) |
-| `--leader-3` | `#2b2318` | Card surface |
-| `--base-gray` | `#9d917f` | Muted labels/metadata (AA-safe: ≥5.0:1 on every ground) |
-| `--emulsion` | `#b7ab9b` | Body text on dark |
-| `--paper` | `#efe6d3` | Headings, warm ivory print stock |
-| `--sepia` (+ `--sepia-rgb`) | `#c39a5c` | **Ambient structural color** — eyebrows, list marks, card borders, hover states. Present on every page, everywhere, the way real chemical staining is |
-| `--light-leak` (+ `--light-leak-rgb`) | `#e0752f` | **The rare accent** — primary CTAs, the hero "live" dot, one featured price. 2–3 uses per page, never a repeated wayfinding mark |
-| `--rule` / `--rule-strong` | `rgba(183,171,155,.16/.3)` | Hairlines |
+| `--leader` | `#0a0a18` | Page ground — deep indigo-black night sky |
+| `--leader-2` | `#13132a` | Raised surface (nav, card bars) |
+| `--leader-3` | `#1c1c3a` | Card surface |
+| `--base-gray` | `#8d89ab` | Muted labels/metadata (AA-safe: ≥4.9:1 everywhere) |
+| `--emulsion` | `#aca8cc` | Body text on dark |
+| `--paper` | `#f2eefc` | Headings, cool starlight white |
+| `--violet` (+ `-rgb`) | `#c4a3fa` | **Ambient structural color** — the sky itself: eyebrows, card borders, list marks, hover states. Present everywhere a mark repeats |
+| `--coral` (+ `-rgb`) | `#ff8095` | **The rare accent** — primary CTAs, the hero "live" dot, one featured price. 2–3 uses per page, never a repeated wayfinding mark |
+| `--cyan` (+ `-rgb`) | `#7fe3f5` | **Atmosphere only** — aurora glows and gradients on large surfaces. Never carries small text, so legibility never depends on it |
+| `--gold` (+ `-rgb`) | `#ffc978` | **Atmosphere only** — sparing warm counterpoint in glows/gradients |
+| `--rule` / `--rule-strong` | `rgba(196,189,224,.14/.28)` | Hairlines |
 
-Color strategy: **two colors with distinct jobs**, not one neon accent on black — the trap this build fell into on the first pass and corrected after the fact (see Revision history below). Sepia carries ambient/structural weight (it's *everywhere*: eyebrows, card top-borders, list marks, secondary hovers); orange is spent on 2–3 genuinely rare, active moments per page. Buttons are flat ink with a hard offset shadow (`3px 3px 0 rgba(0,0,0,.3)`) — no blurred glow anywhere in the system; stamped ink and printed paper don't glow.
+Color strategy: **two functional colors + two atmosphere-only colors**, not one accent on black. Violet does the ambient/structural work that repeats 5–8× per page (eyebrows, borders, hovers); coral is spent on 2–3 genuinely rare, active moments. Cyan and gold never carry text — they exist purely in the starfield/aurora wash and photo glows, so a low-vision reader never depends on a color that was never contrast-checked for text. Glow *is* used here (box-shadow blur on buttons, the eyebrow dot, the "live" dot) — unlike the first pass, this isn't an accidental AI-default tell, it's the explicit brief ("neon... rays of light... magical").
+
+## Atmosphere
+
+- **Starfield** — `body::before`, eight small radial-gradient points fixed to the viewport, tiled at 340px, opacity 0.4. Cheap, no image asset.
+- **Aurora wash** — `body::after`, three large soft radial gradients (violet upper-left, cyan upper-right, coral lower-center) fixed behind all content. Applied once globally, not per-section.
+- **Photo treatment** — hero and about photos: `grayscale()` + `contrast()` + `brightness()` only (no color filter), with a two-layer overlay: a plain dark gradient for caption legibility (`::before`) and a violet/coral/cyan radial-gradient glow in `mix-blend-mode: screen` (`::after`) — light appears to fall across the photo rather than a color filter sitting on top of it.
+- **Divider** — a violet-to-cyan gradient hairline (was a dashed/dotted rule in the first pass).
 
 ## Type
 
-- **Display** — `Anton`, uppercase, for h1–h4 and stamped headlines. Not a training-data default; chosen for its stamped/edge-code character.
+Unchanged from the first pass — the user's revamp request was about color, not type.
+
+- **Display** — `Anton`, uppercase, for h1–h4 and headlines.
 - **Body/UI** — `Archivo` (400–800, 500 italic).
-- **Metadata/mono** — `JetBrains Mono` (400/500/700) for frame numbers, eyebrows, badges, footer legal text, price notes.
+- **Metadata/mono** — `JetBrains Mono` (400/500/700) for star/section labels, badges, footer legal text, price notes.
 
 ## Components (`assets/css/theme.css`)
 
-- `.eyebrow` — mono kicker, sepia text + dot, optional `.frame-no` prefix ("FRAME 01") in `--base-gray`. Appears 5–8× per page, which is exactly why it's sepia, not orange.
-- `.btn-primary` / `.btn-secondary` — stamped film-leader tab buttons, flat fill, hard offset shadow (no blur/glow).
-- `.frame-card` — the reusable content unit: a `__bar` (frame number + tag) over a `__body`. Every card gets a sepia top border by default; `.frame-card--lit` swaps that to orange to mark the one featured/recommended item — color is never only on the "special" card.
-- `.faq-item` — `<details>/<summary>` pattern, unchanged interaction, sepia hover/icon (repeats too often per page for the rare accent).
-- Film grain — one cheap SVG `feTurbulence` overlay on `body::before`, `mix-blend-mode: overlay`, opacity 0.05. Applied once globally, not per-section.
-
-Removed as dead CSS during the palette revision: `.badge` and `.sprockets` were defined but never referenced by any page's markup.
+- `.eyebrow` — mono kicker, violet text + a violet dot with a small glow, optional `.frame-no` prefix (e.g. "STAR 01") in `--base-gray`.
+- `.btn-primary` / `.btn-secondary` — coral flat fill with a real soft glow (`0 0 22px rgba(coral,.35)`) on primary; outline on secondary.
+- `.frame-card` — the reusable content unit: a `__bar` (star number + tag) over a `__body`. Every card gets a violet top border by default; `.frame-card--lit` swaps that to coral (plus a faint glow) to mark the one featured/recommended item.
+- `.faq-item` — `<details>/<summary>` pattern, violet hover/icon.
 
 ## Pages built in this world
 
-- `/` (was `/home`) — flagship: full-bleed frame-strip hero (duotone photo, light-leak sweep, sprocket edge-code), session-notes about section, reel-index offerings teaser, community, contact.
-- `/offers` — 4 frame-card product grid, process steps, FAQ, contact.
-- `/compendium`, `/practice` — long-form single-column sales pages; scroll-reveal + mouse-parallax behavior preserved from the prior build, restyled only.
-- `/legal` — merged `/privacy` + `/terms` into one page, two anchored sections (`#privacy`, `#terms`), jump nav. Legal text unchanged verbatim.
-- `/thank-you`, `/thank-you-practice` — kept as separate routes (not merged) because their Meta Pixel Purchase-event logic differs per product; restyled only.
+- `/` — flagship: full-bleed star-chart hero (duotone photo lit by an aurora glow), session-notes about section, offers teaser, community, contact.
+- `/offers` — 4 `.frame-card` product grid, the **Inner Life of Sound** process section, FAQ, contact.
+- `/compendium`, `/practice` — long-form single-column sales pages; scroll-reveal + mouse-parallax behavior preserved, restyled only.
+- `/legal` — merged `/privacy` + `/terms`, two anchored sections, legal text unchanged verbatim.
+- `/thank-you`, `/thank-you-practice` — kept as separate routes (their Meta Pixel Purchase-event logic differs per product).
+
+Wayfinding vocabulary changed with the world: "FRAME NN" / "REEL X" (film-can language) became a single sequential "STAR NN" numbering per page. The film-specific chrome that had no honest night-sky equivalent was dropped outright rather than reskinned: the hero's fake film-frame corner tag ("03A"), the compendium cover's corner tag ("7A"), and the nav's fabricated edge-code ("7247 · E7 · 16MM") are gone; the nav kicker is now "Modal Star Chart."
 
 ## What the world does NOT touch
 
-- Product photography (`tito-portrait.webp`, `tito-playing.webp`) — real photos, only duotone/light-leak CSS filters applied, not replaced.
-- The compendium book cover and TOC image — real product assets, shown with a light overlay only.
-- All copy, pricing, FAQ answers, and legal text — preserved verbatim; this was a visual redesign, not a content rewrite.
+- Product photography and the compendium cover/TOC art — real assets, only CSS filters/overlays applied.
+- All copy, pricing, FAQ answers, and legal text — preserved verbatim.
 
 ## Known follow-ups (not done in this pass)
 
-- No image-generation tool was available in this session, so this was a **code-led** build throughout: no comp was rendered before build; ambition lived in the direction contract's FIRST VIEWPORT block instead. `.impeccable/config.json` still records `buildPath: comp` as the user's standing preference for whenever image generation is available.
-- No automated finish-reviewer subagent was available in this harness; the finish pass was a self-review (detector run + full desktop/mobile screenshot QA across all 7 pages, one contrast-token fix applied before it shipped anywhere).
+- No image-generation tool was available in this session, so every pass here was **code-led**: no comp was rendered before build. `.impeccable/config.json` still records `buildPath: comp` as the user's standing preference for whenever image generation is available.
+- No automated finish-reviewer subagent was available in this harness; the finish pass was a self-review (detector run + full desktop/mobile screenshot QA, contrast re-verified after each token change).
 - Original site copy carries pre-existing em-dash density on the Offers page (flagged advisory by the detector) — it's the client's own original marketing copy, left untouched.
 
 ## Revision history
 
-**Palette rework.** The first pass shipped near-black + one orange accent with blurred glow on buttons and the eyebrow dot — a named AI-cluster look (`new-work.md`'s own calibration section warns against exactly this: "near-black with one neon accent and glowing edges"). Caught by the user on review. Fixed the mechanism, not just the hue: warmed the ground away from a neutral designer-app black, gave sepia/brass real structural work across every repeated element (eyebrows, card borders, list marks, hovers), and cut orange down to 2–3 genuinely rare uses per page (primary CTA, one "live" signal, one featured price). Killed every blurred box-shadow glow in favor of flat fills with a hard offset shadow. All contrast ratios re-verified ≥4.5:1 after the change.
+**v1 — Hand-Processed Film.** Locked via a direction round (concept-seed key `f69801ae`) as a competitive challenger over the assigned direction ("The Working Manuscript"). Replaced the prior "mystic night sky" purple/gold world (Cormorant Garamond + Great Vibes + Inter) entirely. Shipped across all 7 pages.
 
-**Inner Life of Sound rename.** The 1:1 peer-support coaching offering (previously unnamed on the live site, called "The Deep Navigation" only in the legal docs) is now named **Inner Life of Sound** everywhere it appears — Offers page process section, home page reel-index teaser, and both Privacy and Terms in `/legal`. Its sliding-scale pricing language was removed (no sliding scale); the CTA is now "Apply Now," linking to a Google Doc application (replacing the old Microsoft Forms link). "Modal Sound Sessions" (the separate $150 single-session offering) and the "state-certified peer support specialist" credential/disclaimer language are unrelated to this rename and were left untouched.
+**v1.1 — Palette self-correction.** v1's first pass had near-black + one orange accent with blurred glow on buttons and the eyebrow dot — a named AI-cluster look (`new-work.md`'s own calibration section warns against exactly this). Caught on review before the user's next message. Warmed the ground, gave brass/sepia real structural work everywhere a mark repeated, cut orange to 2–3 rare uses per page, killed all blurred glow for flat fills with a hard offset shadow.
+
+**Inner Life of Sound rename (content, not visual).** The 1:1 peer-support coaching offering (previously unnamed on the live site, called "The Deep Navigation" only in the legal docs) renamed to **Inner Life of Sound** across Offers, home, and `/legal`. Sliding-scale pricing language removed; CTA is now "Apply Now" linking to a Google Doc application (replacing the old Microsoft Forms link). "Modal Sound Sessions" and the peer-support-specialist credential language are unrelated and untouched.
+
+**v2 — Night Sky / Aurora Star Chart.** User request: "revamp the color scheme to something moreso looking like prism, corals, rays of light, magical worlds... neon with black night skies." Judged as a world change, not a token edit, given the film-archive vocabulary (frame numbers, sprockets, edge-codes) had no honest translation into a celestial palette. Renamed the functional tokens (`--sepia`→`--violet`, `--light-leak`→`--coral`) rather than just recoloring them, added two atmosphere-only prism colors (`--cyan`, `--gold`), added the starfield/aurora-wash background, reworked hero/about photo treatment from a single-color light-leak sweep to a multi-color screen-blend glow, and swept every page's wayfinding text from film vocabulary to "STAR NN." Glow returns deliberately here — this world's brief explicitly asked for neon and rays of light, so a soft box-shadow bloom on the coral accent is the brief being honored, not the v1 mistake recurring.

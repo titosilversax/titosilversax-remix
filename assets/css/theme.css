@@ -1,40 +1,42 @@
 /* ═══════════════════════════════════════════════════════════════
    TITO SILVERSAX — DESIGN SYSTEM
-   World: Hand-Processed Film — a strip of 16mm carrying scratches,
-   uneven chemistry, and light leaks; the emulsion itself joins the
-   recording. Tito is a recording artist first — every soundscape,
-   every guide, is a session that survived being made. The site
-   treats itself as the archive that recovered them: numbered reels,
-   frame-banded content, sprocket chrome.
+   World: Night Sky / Aurora Star Chart — a deep-space ground with
+   prismatic light moving through it: violet, coral, cyan, gold.
+   Ties directly to the product itself (The Emotional Star Map maps
+   feeling to constellation) rather than being decorative sci-fi.
 
-   Two colors carry real, distinct jobs — not one neon accent on
-   black. Chemical stain (brass/ochre) is ambient and everywhere:
-   hovers, secondary borders, every card's resting state — the way
-   real film picks up chemistry on every frame. Light leak (orange)
-   is rare and dramatic: one primary action per view, the tally-light
-   dot, the moment something is actively "live." Flat, hard edges
-   throughout — stamped ink and printed paper don't glow.
+   Two colors carry real, distinct jobs. Violet is ambient and
+   everywhere — eyebrows, card borders, list marks, hover states —
+   the color of the sky itself, always present. Coral is rare and
+   dramatic: one primary action per view, the one "live" signal, the
+   one featured price. Cyan and gold are atmosphere only — aurora
+   glows and gradient sweeps on large surfaces — never carrying small
+   text, so legibility never depends on them.
    ═══════════════════════════════════════════════════════════════ */
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* ── Color & material — warm, not a designer-app neutral black ── */
-  --leader:          #171310;  /* ground: aged film base, not pure black */
-  --leader-2:         #201a15;  /* raised surface (nav, card bars) */
-  --leader-3:         #2b2318;  /* card surface */
-  --base-gray:        #9d917f;  /* muted labels/metadata (AA-safe: 5.0:1 on --leader-3) */
-  --emulsion:         #b7ab9b;  /* body text on dark */
-  --paper:            #efe6d3;  /* headings, warm ivory print stock */
+  /* ── Color & material — deep night sky, not a warm or neutral black ── */
+  --leader:           #0a0a18;  /* ground: deep indigo-black night sky */
+  --leader-2:          #13132a;  /* raised surface (nav, card bars) */
+  --leader-3:          #1c1c3a;  /* card surface */
+  --base-gray:         #8d89ab;  /* muted labels/metadata (AA-safe: ≥4.9:1 everywhere) */
+  --emulsion:          #aca8cc;  /* body text on dark */
+  --paper:             #f2eefc;  /* headings, cool starlight white */
 
-  --sepia:            #c39a5c;  /* chemical stain — the ambient structural color */
-  --sepia-rgb:         195, 154, 92;
-  --light-leak:        #e0752f;  /* the rare accent — one primary action, one live signal */
-  --light-leak-rgb:     224, 117, 47;
+  --violet:            #c4a3fa;  /* ambient structural color — the sky itself */
+  --violet-rgb:         196, 163, 250;
+  --coral:             #ff8095;  /* the rare accent — one primary action, one live signal */
+  --coral-rgb:          255, 128, 149;
+  --cyan:              #7fe3f5;  /* atmosphere only — glows, gradients, never small text */
+  --cyan-rgb:           127, 227, 245;
+  --gold:              #ffc978;  /* atmosphere only — sparing warm counterpoint */
+  --gold-rgb:           255, 201, 120;
 
-  --rule:             rgba(183, 171, 155, 0.16);
-  --rule-strong:      rgba(183, 171, 155, 0.3);
-  --grain-opacity:    0.05;
+  --rule:             rgba(196, 189, 224, 0.14);
+  --rule-strong:      rgba(196, 189, 224, 0.28);
+  --grain-opacity:    0.4;
 
   --ff-display: 'Anton', 'Oswald', sans-serif;
   --ff-body:    'Archivo', system-ui, -apple-system, sans-serif;
@@ -53,16 +55,40 @@ body {
   position: relative;
 }
 
-/* Film grain — cheap, crisp, applied once to the whole document */
+/* Starfield — small fixed points of light behind all content. */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  z-index: -1;
   pointer-events: none;
+  background-image:
+    radial-gradient(1.6px 1.6px at 20% 30%, rgba(242,238,252,0.9) 0%, transparent 60%),
+    radial-gradient(1.2px 1.2px at 65% 12%, rgba(242,238,252,0.7) 0%, transparent 60%),
+    radial-gradient(1.4px 1.4px at 85% 55%, rgba(242,238,252,0.8) 0%, transparent 60%),
+    radial-gradient(1px 1px at 40% 70%, rgba(242,238,252,0.6) 0%, transparent 60%),
+    radial-gradient(1.3px 1.3px at 10% 85%, rgba(242,238,252,0.75) 0%, transparent 60%),
+    radial-gradient(1px 1px at 92% 80%, rgba(242,238,252,0.55) 0%, transparent 60%),
+    radial-gradient(1.5px 1.5px at 52% 45%, rgba(242,238,252,0.65) 0%, transparent 60%),
+    radial-gradient(1px 1px at 75% 92%, rgba(242,238,252,0.5) 0%, transparent 60%);
+  background-size: 340px 340px;
+  background-repeat: repeat;
   opacity: var(--grain-opacity);
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Aurora wash — large, soft prismatic gradient bands fixed behind
+   the content; the "rays of light" material. Three blurred radial
+   gradients, no per-section duplication needed. */
+body::after {
+  content: '';
+  position: fixed;
+  inset: -10%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(60% 40% at 15% 0%, rgba(var(--violet-rgb), 0.16) 0%, transparent 60%),
+    radial-gradient(50% 35% at 90% 15%, rgba(var(--cyan-rgb), 0.10) 0%, transparent 60%),
+    radial-gradient(55% 45% at 50% 100%, rgba(var(--coral-rgb), 0.08) 0%, transparent 60%);
 }
 
 a { color: inherit; }
@@ -71,7 +97,7 @@ img { max-width: 100%; display: block; }
 .container      { width: 100%; max-width: 720px; margin: 0 auto; padding: 0 24px; }
 .container--wide{ max-width: 1040px; }
 
-::selection { background: var(--light-leak); color: var(--leader); }
+::selection { background: var(--coral); color: var(--leader); }
 
 /* ── Type scale ── */
 h1, h2, h3, h4 { font-family: var(--ff-display); font-weight: 400; color: var(--paper); text-transform: uppercase; letter-spacing: 0.01em; line-height: 0.98; }
@@ -85,7 +111,7 @@ h1, h2, h3, h4 { font-family: var(--ff-display); font-weight: 400; color: var(--
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--sepia);
+  color: var(--violet);
   margin-bottom: 18px;
 }
 
@@ -94,7 +120,8 @@ h1, h2, h3, h4 { font-family: var(--ff-display); font-weight: 400; color: var(--
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--sepia);
+  background: var(--violet);
+  box-shadow: 0 0 6px rgba(var(--violet-rgb), 0.7);
   flex-shrink: 0;
 }
 
@@ -130,7 +157,7 @@ h1, h2, h3, h4 { font-family: var(--ff-display); font-weight: 400; color: var(--
   position: absolute;
   left: 0; right: 0; top: 50%;
   height: 1px;
-  background: repeating-linear-gradient(90deg, var(--rule) 0 6px, transparent 6px 12px);
+  background: linear-gradient(90deg, transparent, rgba(var(--violet-rgb),0.35) 30%, rgba(var(--cyan-rgb),0.25) 70%, transparent);
 }
 
 /* ── NAV ── */
@@ -142,17 +169,17 @@ h1, h2, h3, h4 { font-family: var(--ff-display); font-weight: 400; color: var(--
   align-items: center;
   justify-content: space-between;
   padding: 14px 24px;
-  background: linear-gradient(to bottom, rgba(23,19,16,0.97) 0%, rgba(23,19,16,0.86) 80%, transparent 100%);
+  background: linear-gradient(to bottom, rgba(10,10,24,0.97) 0%, rgba(10,10,24,0.86) 80%, transparent 100%);
   border-bottom: 1px solid transparent;
   transition: border-color 0.25s, background 0.25s;
 }
 .nav.scrolled {
-  background: rgba(23, 19, 16, 0.96);
+  background: rgba(10, 10, 24, 0.96);
   border-bottom-color: var(--rule);
   backdrop-filter: blur(10px);
 }
 .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.nav-logo img { height: 40px; width: auto; display: block; filter: grayscale(1) contrast(1.1); }
+.nav-logo img { height: 40px; width: auto; display: block; filter: grayscale(1) contrast(1.1) brightness(1.3); }
 .nav-logo-mark {
   font-family: var(--ff-mono);
   font-size: 0.68rem;
@@ -175,16 +202,16 @@ h1, h2, h3, h4 { font-family: var(--ff-display); font-weight: 400; color: var(--
   transition: color 0.2s;
   position: relative;
 }
-.nav-links a::before { content: '// '; color: var(--sepia); opacity: 0; transition: opacity 0.2s; }
+.nav-links a::before { content: '// '; color: var(--violet); opacity: 0; transition: opacity 0.2s; }
 .nav-links a:hover { color: var(--paper); }
 .nav-links a:hover::before { opacity: 1; }
 
-/* ── BUTTONS (stamped film-leader tabs — flat ink, no glow) ── */
+/* ── BUTTONS (rays of light — coral fill, a real glow earned by this world) ── */
 .btn-primary, a.convertkit-button, .convertkit-button {
   display: inline-flex !important;
   align-items: center;
   gap: 10px;
-  background: var(--light-leak) !important;
+  background: var(--coral) !important;
   color: var(--leader) !important;
   font-family: var(--ff-mono) !important;
   font-size: 0.82rem !important;
@@ -194,11 +221,11 @@ h1, h2, h3, h4 { font-family: var(--ff-display); font-weight: 400; color: var(--
   text-decoration: none !important;
   padding: 14px 22px !important;
   border: none !important;
-  border-radius: 2px !important;
+  border-radius: 3px !important;
   cursor: pointer;
   position: relative;
-  box-shadow: 3px 3px 0 0 rgba(0,0,0,0.3) !important;
-  transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
+  box-shadow: 0 0 22px rgba(var(--coral-rgb), 0.35), 0 2px 10px rgba(0,0,0,0.4) !important;
+  transition: box-shadow 0.25s, transform 0.15s, background 0.2s;
   width: auto !important;
   text-align: center;
 }
@@ -207,13 +234,13 @@ a.convertkit-button::before, a.convertkit-button::after {
   content: '';
   width: 6px; height: 6px;
   background: var(--leader);
-  border-radius: 1px;
+  border-radius: 50%;
   flex-shrink: 0;
 }
 .btn-primary:hover, a.convertkit-button:hover, .convertkit-button:hover {
-  background: #ea8544 !important;
-  transform: translate(-1px, -1px);
-  box-shadow: 4px 4px 0 0 rgba(0,0,0,0.3) !important;
+  background: #ff97a8 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 0 32px rgba(var(--coral-rgb), 0.5), 0 4px 14px rgba(0,0,0,0.45) !important;
 }
 
 .btn-secondary {
@@ -230,21 +257,21 @@ a.convertkit-button::before, a.convertkit-button::after {
   text-decoration: none;
   padding: 13px 22px;
   border: 1px solid var(--rule-strong);
-  border-radius: 2px;
+  border-radius: 3px;
   cursor: pointer;
   transition: color 0.2s, border-color 0.2s, background 0.2s;
 }
-.btn-secondary:hover { color: var(--paper); border-color: var(--sepia); background: rgba(var(--sepia-rgb), 0.06); }
+.btn-secondary:hover { color: var(--paper); border-color: var(--violet); background: rgba(var(--violet-rgb), 0.06); }
 
 /* ── Frame card (offers, testimonials, generic content unit) ──
-   Every card carries the ambient sepia by default — color is never
+   Every card carries the ambient violet by default — color is never
    only on the one "featured" card. --lit swaps that accent to the
-   rare orange to mark the actively recommended/live item. */
+   rare coral to mark the actively recommended/live item. */
 .frame-card {
   background: var(--leader-3);
   border: 1px solid var(--rule);
-  border-top: 2px solid rgba(var(--sepia-rgb), 0.55);
-  border-radius: 0 0 3px 3px;
+  border-top: 2px solid rgba(var(--violet-rgb), 0.55);
+  border-radius: 0 0 6px 6px;
   position: relative;
   overflow: hidden;
 }
@@ -261,11 +288,11 @@ a.convertkit-button::before, a.convertkit-button::after {
   color: var(--base-gray);
   background: var(--leader-2);
 }
-.frame-card__bar .tag { color: var(--sepia); }
+.frame-card__bar .tag { color: var(--violet); }
 .frame-card__body { padding: 28px 24px; }
-.frame-card--lit { border-color: rgba(var(--light-leak-rgb), 0.4); border-top-color: var(--light-leak); }
-.frame-card--lit .frame-card__bar { border-bottom-color: rgba(var(--light-leak-rgb), 0.3); }
-.frame-card--lit .frame-card__bar .tag { color: var(--light-leak); }
+.frame-card--lit { border-color: rgba(var(--coral-rgb), 0.4); border-top-color: var(--coral); box-shadow: 0 0 30px rgba(var(--coral-rgb), 0.08); }
+.frame-card--lit .frame-card__bar { border-bottom-color: rgba(var(--coral-rgb), 0.3); }
+.frame-card--lit .frame-card__bar .tag { color: var(--coral); }
 
 /* ── FAQ ── */
 details.faq-item {
@@ -288,12 +315,12 @@ details.faq-item summary {
 }
 details.faq-item summary::-webkit-details-marker,
 details.faq-item summary::marker { display: none; }
-details.faq-item summary:hover { color: var(--sepia); }
+details.faq-item summary:hover { color: var(--violet); }
 .faq-icon {
   flex-shrink: 0;
   font-family: var(--ff-mono);
   font-size: 1.1rem;
-  color: var(--sepia);
+  color: var(--violet);
   width: 20px;
   text-align: center;
   transition: transform 0.25s;
@@ -316,10 +343,10 @@ details[open].faq-item .faq-icon { transform: rotate(45deg); }
   text-decoration: none;
   transition: color 0.2s;
 }
-.footer-social a:hover, .footer-nav a:hover { color: var(--sepia); }
+.footer-social a:hover, .footer-nav a:hover { color: var(--violet); }
 .footer-legal { font-size: 0.74rem; color: var(--base-gray); line-height: 1.8; font-family: var(--ff-mono); }
 .footer-legal a { color: var(--base-gray); text-decoration: none; }
-.footer-legal a:hover { color: var(--sepia); }
+.footer-legal a:hover { color: var(--violet); }
 
 /* ── Utility ── */
 .text-center { text-align: center; }
