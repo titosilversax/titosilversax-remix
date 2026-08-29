@@ -34,46 +34,91 @@
   <link rel="stylesheet" href="/assets/css/theme.css">
 
   <style>
-    /* ── HERO ── */
-    .hero {
+    /* ── HERO: THE MAP ITSELF ──
+       No hero split. The first viewport is the constellation; the name is
+       a label on the chart, not a headline competing with a photo panel. */
+    .hero-map {
       position: relative;
-      padding: 128px 0 0;
+      min-height: 100vh;
+      padding: 140px 24px 72px;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 32px;
       border-bottom: 1px solid var(--rule);
     }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 40px;
-      align-items: stretch;
+    .constellation {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
     }
-    .hero-copy { padding: 0 24px 56px; }
-    .hero-edge {
-      display: none;
+    .constellation .c-line { stroke: var(--violet); stroke-width: 1.2; opacity: 0.32; }
+    .constellation .c-dot { }
+    .constellation .c-violet { fill: var(--violet); filter: drop-shadow(0 0 5px rgba(var(--violet-rgb), 0.75)); }
+    .constellation .c-cyan   { fill: var(--cyan);   filter: drop-shadow(0 0 5px rgba(var(--cyan-rgb), 0.75)); }
+    .constellation .c-coral  { fill: var(--coral);  filter: drop-shadow(0 0 6px rgba(var(--coral-rgb), 0.85)); }
+    .constellation .c-paper  { fill: var(--paper);  filter: drop-shadow(0 0 6px rgba(242, 238, 252, 0.7)); }
+
+    .hero-medallion {
+      position: relative;
+      z-index: 1;
+      width: 200px;
+      height: 200px;
+      flex-shrink: 0;
     }
+    .hero-medallion img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      filter: grayscale(0.4) contrast(1.15) brightness(0.92);
+      box-shadow: 0 0 0 2px rgba(var(--coral-rgb), 0.5), 0 0 42px rgba(var(--violet-rgb), 0.45);
+    }
+    .medallion-caption {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 14px;
+      font-family: var(--ff-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--base-gray);
+    }
+    .medallion-caption .rec-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--coral);
+      box-shadow: 0 0 8px rgba(var(--coral-rgb), 0.85);
+      flex-shrink: 0;
+    }
+
+    .hero-label { position: relative; z-index: 1; text-align: center; max-width: 560px; }
     .hero-headline {
       font-family: var(--ff-script);
       font-weight: 400;
-      font-size: clamp(4.4rem, 16vw, 9rem);
-      line-height: 1.15;
+      font-size: clamp(3.4rem, 11vw, 5.6rem);
+      line-height: 1.2;
       color: var(--paper);
-      margin-bottom: 22px;
+      margin-bottom: 16px;
     }
     .hero-sub {
-      font-size: 1.08rem;
+      font-size: 1.04rem;
       color: var(--emulsion);
       line-height: 1.75;
-      max-width: 480px;
-      margin-bottom: 32px;
+      margin-bottom: 26px;
     }
-    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 24px; }
     .hero-quote {
       display: inline-flex;
       align-items: center;
       gap: 10px;
       font-family: var(--ff-mono);
       font-size: 0.82rem;
-      font-style: normal;
       color: var(--violet);
       padding: 10px 14px;
       border: 1px dashed var(--rule-strong);
@@ -81,76 +126,48 @@
     }
     .hero-quote::before { content: '“'; color: var(--violet); font-size: 1.1rem; }
 
-    .hero-frame {
-      position: relative;
-      aspect-ratio: 4 / 5;
-      background: var(--leader-2);
-      overflow: hidden;
-      border-left: 1px solid var(--rule);
-    }
-    .hero-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: grayscale(0.45) contrast(1.15) brightness(0.82);
-    }
-    .hero-frame::before {
-      content: '';
-      position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(0deg, rgba(10,10,24,0.8) 0%, transparent 45%);
-      pointer-events: none;
-    }
-    .hero-frame::after {
-      content: '';
-      position: absolute; inset: 0; z-index: 1;
-      background:
-        radial-gradient(55% 45% at 85% 8%, rgba(var(--violet-rgb),0.5) 0%, transparent 65%),
-        radial-gradient(45% 40% at 8% 95%, rgba(var(--coral-rgb),0.4) 0%, transparent 65%),
-        radial-gradient(35% 30% at 60% 40%, rgba(var(--cyan-rgb),0.22) 0%, transparent 70%);
-      mix-blend-mode: screen;
-      pointer-events: none;
-    }
-    .hero-frame-caption {
-      position: absolute;
-      left: 18px; bottom: 18px; right: 18px;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--ff-mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--paper);
-    }
-    .hero-frame-caption .rec-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--coral);
-      box-shadow: 0 0 8px rgba(var(--coral-rgb), 0.85);
-      flex-shrink: 0;
-    }
-    .hero-edgecode {
-      position: absolute;
-      left: 6px; top: 0; bottom: 0;
-      writing-mode: vertical-rl;
-      display: none;
-      align-items: center;
-      font-family: var(--ff-mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.15em;
-      color: var(--base-gray);
-      z-index: 2;
+    @media (min-width: 900px) {
+      .hero-map { align-items: stretch; justify-content: flex-start; padding: 0; }
+      .hero-medallion {
+        position: absolute; z-index: 1;
+        top: 20%; right: 11%;
+        width: 300px; height: 300px;
+      }
+      .hero-label {
+        position: absolute; z-index: 1;
+        left: 9%; bottom: 15%;
+        text-align: left; max-width: 460px;
+      }
+      .hero-ctas { justify-content: flex-start; }
     }
 
-    @media (min-width: 900px) {
-      .hero-grid { grid-template-columns: 1.05fr 0.95fr; gap: 0; min-height: 78vh; }
-      .hero-copy { padding: 40px 56px 56px; display: flex; flex-direction: column; justify-content: center; }
-      .hero-frame { aspect-ratio: auto; }
-      .hero-edgecode { display: flex; }
+    /* ── THE THREAD ──
+       One continuous line runs from the hero to the close. Sections sit
+       above it (z-index 1) so the line submerges under dense content and
+       resurfaces in the gaps between sections. */
+    .thread-wrap { position: relative; }
+    .thread-line {
+      position: absolute;
+      left: 50%; top: 0; bottom: 0;
+      width: 2px;
+      transform: translateX(-50%);
+      background: linear-gradient(180deg, var(--violet) 0%, var(--cyan) 45%, var(--coral) 100%);
+      opacity: 0.22;
+      z-index: 0;
+      pointer-events: none;
     }
+    .thread-node { position: relative; z-index: 1; display: flex; justify-content: center; padding: 26px 0; }
+    .thread-node::before {
+      content: '';
+      width: 11px; height: 11px;
+      border-radius: 50%;
+      background: var(--violet);
+      box-shadow: 0 0 10px rgba(var(--violet-rgb), 0.8);
+    }
+    .node { position: relative; z-index: 1; }
 
     /* ── ABOUT / SESSION NOTES ── */
-    .about { padding: 88px 0; }
+    .about { padding: 8px 0 64px; }
     .about-grid { display: grid; grid-template-columns: 1fr; gap: 44px; align-items: start; }
     .about-frames { display: flex; gap: 14px; }
     .about-frame {
@@ -186,27 +203,52 @@
       .about-grid { grid-template-columns: 0.85fr 1.15fr; gap: 56px; }
     }
 
-    /* ── OFFERINGS TEASER / REEL INDEX ── */
-    .reel { padding: 0 0 88px; }
-    .reel-index { list-style: none; margin: 28px 0 32px; }
-    .reel-index li {
-      display: flex;
-      align-items: baseline;
-      gap: 16px;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--rule);
-      font-family: var(--ff-mono);
+    /* ── OFFERINGS: NODES ON THE THREAD, NOT A GRID ── */
+    .reel { padding: 8px 0 56px; text-align: center; }
+    .offers-thread {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      max-width: 620px;
+      margin: 36px auto 32px;
+      padding: 0 24px;
+      text-align: left;
     }
-    .reel-index li:first-child { border-top: 1px solid var(--rule); }
-    .reel-index .num { color: var(--violet); font-size: 0.85rem; flex-shrink: 0; width: 28px; }
-    .reel-index .name { color: var(--paper); font-size: 1rem; font-family: var(--ff-body); font-weight: 600; }
-    .reel-index .tag { margin-left: auto; color: var(--base-gray); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; }
+    .thread-offer {
+      position: relative;
+      padding: 18px 20px;
+      background: var(--leader-3);
+      border: 1px solid var(--rule);
+      border-top: 2px solid rgba(var(--violet-rgb), 0.5);
+      border-radius: 0 0 8px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .thread-offer-num { font-family: var(--ff-mono); font-size: 0.7rem; color: var(--violet); }
+    .thread-offer-name { font-family: var(--ff-body); font-weight: 700; font-size: 1.05rem; color: var(--paper); }
+    .thread-offer-tag { font-family: var(--ff-mono); font-size: 0.68rem; color: var(--base-gray); text-transform: uppercase; letter-spacing: 0.06em; }
+
+    @media (min-width: 720px) {
+      .offers-thread { grid-template-columns: 1fr 48px 1fr; align-items: center; max-width: 780px; }
+      .thread-offer--left  { grid-column: 1; }
+      .thread-offer--right { grid-column: 3; }
+      .thread-offer:nth-child(1) { grid-row: 1; }
+      .thread-offer:nth-child(2) { grid-row: 2; }
+      .thread-offer:nth-child(3) { grid-row: 3; }
+      .thread-offer:nth-child(4) { grid-row: 4; }
+      .thread-offer::after {
+        content: ''; position: absolute; top: 26px; width: 14px; height: 2px; background: rgba(var(--violet-rgb), 0.55);
+      }
+      .thread-offer--left::after  { right: -14px; }
+      .thread-offer--right::after { left: -14px; }
+    }
 
     /* ── COMMUNITY / CONTACT ── */
-    .strip-section { padding: 72px 0; text-align: center; }
+    .strip-section { padding: 8px 0 56px; text-align: center; }
     .strip-section .section-lede { margin: 0 auto 28px; }
 
-    .contact { padding: 96px 0; text-align: center; position: relative; }
+    .contact { padding: 16px 0 88px; text-align: center; position: relative; }
     .contact-heading { font-family: var(--ff-script); font-weight: 400; font-size: clamp(3.6rem, 12vw, 7.5rem); line-height: 1.25; color: var(--paper); margin-bottom: 14px; }
     .contact-sub { font-size: 0.98rem; color: var(--base-gray); margin: 0 auto 28px; max-width: 400px; line-height: 1.75; }
     .contact-email {
@@ -224,11 +266,11 @@
 </head>
 <body>
 <!--
-THESIS: The site as Tito's own star chart — the product literally maps feeling to constellation, so the site lives in the same sky rather than illustrating it from outside.
-OWN-WORLD: Deep indigo-black night sky ground, a starfield and soft aurora wash behind every page, violet as the ambient structural color (eyebrows, borders, hovers), coral as the rare accent (CTAs, one live signal, one featured price), cyan and gold as atmosphere-only prism light. Anton display caps, Archivo body, JetBrains Mono for star/metadata labels.
-STORY: A visitor understands Tito's music and offerings are handmade and mystically grounded, and takes one clear next action per page.
-FIRST VIEWPORT: Full-bleed star-chart hero — headline and CTAs left, a single lit frame of Tito playing right lit by violet/coral/cyan aurora glow, starfield and soft light rays behind the whole page.
-FORM: Night Sky / Aurora Star Chart — user-directed revision over the shipped Hand-Processed Film world (seed key f69801ae) after live feedback that the first pass read as a generic AI dark-mode-plus-accent look.
+THESIS: The site as Tito's own star chart, structurally — not a hero-plus-sections template recolored, but one continuous thread the visitor follows from the sky itself down through his practice to the door.
+OWN-WORLD: Deep indigo-black night sky ground, starfield and aurora wash behind every page, violet as the ambient structural color, coral as the rare accent, cyan and gold as atmosphere-only prism light. Italianno for every heading, Archivo body, JetBrains Mono for star/metadata labels.
+STORY: A visitor follows one continuous chart from Tito's own constellation into what he's made and how to reach him, rather than scrolling past independent stacked blocks.
+FIRST VIEWPORT: No hero split. A built constellation fills the frame; a circular medallion of Tito mid-performance and his name-as-chart-label float asymmetrically over it, not side by side.
+FORM: Night Sky / Aurora Star Chart (seed key f69801ae), surface structure "The Unfolding Map" — locked via a surface-scope concept round (seed key f11a7960) after the user flagged that every prior pass had reskinned the original site's stacked-section composition rather than reimagining it.
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
 -->
 
@@ -256,129 +298,165 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   </script>
 
   <!-- ══════════════════════════════
-       HERO
+       HERO — THE MAP ITSELF
        ══════════════════════════════ -->
-  <section class="hero" id="home">
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <span class="eyebrow"><span class="frame-no">STAR 01</span> · Cleveland, OH</span>
-        <h1 class="hero-headline">Tito<br>Silversax</h1>
-        <p class="hero-sub">
-          Spirit-first improvisation. Modal soundscapes for the seasons
-          when music is the only thing that understands you.
+  <section class="hero-map" id="home">
+    <svg class="constellation" viewBox="0 0 1000 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <line class="c-line" x1="90" y1="150" x2="260" y2="70"/>
+      <line class="c-line" x1="260" y1="70" x2="420" y2="220"/>
+      <line class="c-line" x1="420" y1="220" x2="600" y2="120"/>
+      <line class="c-line" x1="600" y1="120" x2="760" y2="270"/>
+      <line class="c-line" x1="760" y1="270" x2="910" y2="150"/>
+      <line class="c-line" x1="420" y1="220" x2="540" y2="410"/>
+      <circle class="c-dot c-violet" cx="90"  cy="150" r="4"/>
+      <circle class="c-dot c-cyan"   cx="260" cy="70"  r="3"/>
+      <circle class="c-dot c-paper"  cx="420" cy="220" r="5"/>
+      <circle class="c-dot c-violet" cx="600" cy="120" r="3.5"/>
+      <circle class="c-dot c-coral"  cx="760" cy="270" r="4"/>
+      <circle class="c-dot c-cyan"   cx="910" cy="150" r="3"/>
+      <circle class="c-dot c-violet" cx="540" cy="410" r="3.5"/>
+    </svg>
+
+    <div class="hero-medallion">
+      <img src="/images/tito-playing.webp" alt="Tito Silversax playing tenor saxophone" width="960" height="1100">
+      <span class="medallion-caption"><span class="rec-dot"></span> Live take · no click track</span>
+    </div>
+
+    <div class="hero-label">
+      <span class="eyebrow" style="justify-content:center;"><span class="frame-no">STAR 01</span> · Cleveland, OH</span>
+      <h1 class="hero-headline">Tito Silversax</h1>
+      <p class="hero-sub">
+        Spirit-first improvisation. Modal soundscapes for the seasons
+        when music is the only thing that understands you.
+      </p>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="https://titosilversax.bandcamp.com/" target="_blank" rel="noopener">
+          Listen on Bandcamp
+        </a>
+        <a class="btn-secondary" href="/offers">Explore the Offers</a>
+      </div>
+      <p class="hero-quote">Damn the rules — it's the feeling that counts.</p>
+    </div>
+  </section>
+
+  <div class="thread-wrap">
+    <div class="thread-line" aria-hidden="true"></div>
+
+    <!-- ══════════════════════════════
+         ABOUT
+         ══════════════════════════════ -->
+    <section class="node about" id="about">
+      <div class="container container--wide">
+        <div class="about-grid">
+          <div class="about-frames">
+            <div class="about-frame">
+              <span class="about-frame-no">04</span>
+              <img src="/images/tito-portrait.webp" alt="Tito Silversax with tenor saxophone" width="340" height="453">
+            </div>
+            <div class="about-frame">
+              <span class="about-frame-no">05</span>
+              <img src="/images/tito-playing.webp" alt="Tito playing tenor saxophone" width="340" height="453" loading="lazy">
+            </div>
+          </div>
+          <div class="about-notes">
+            <span class="eyebrow"><span class="frame-no">SESSION NOTES</span></span>
+            <h2 class="section-heading" style="font-size: clamp(2rem, 5vw, 2.8rem);">If music has ever felt like the only thing that understood you</h2>
+            <p style="font-family: var(--ff-mono); color: var(--violet); font-size: 0.85rem; margin-bottom: 18px;">You're in the right place.</p>
+            <p class="about-body">
+              I'm Tito — a Puerto Rican-American ambient saxophonist and
+              state-certified peer support specialist in Cleveland, Ohio.
+              Drawing on mystical experience, contemplative Christian faith,
+              and Taíno roots, I play spirit-first, swimming in what Toru
+              Takemitsu called the sea of tonality: improvisation over my own
+              arrangements, with advanced harmony as the poetic language.
+              I wrote <em>The Saxophonist's Compendium</em> and
+              <em>The Emotional Star Map</em>, and I play out in Cleveland's
+              jazz and improv scene. Sam Newsome, Takemitsu, Debussy, Satie,
+              Beethoven, Tomasz Stańko, and Stephan Micus shape my ear;
+              Coltrane and Miles Davis remain my muses.
+            </p>
+            <p class="about-marginalia">Peer Support · Modal Music — every recording and every guide comes from the same practice, not a course written about it.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="thread-node" aria-hidden="true"></div>
+
+    <!-- ══════════════════════════════
+         OFFERINGS — NODES ON THE THREAD
+         ══════════════════════════════ -->
+    <section class="node reel" id="offerings">
+      <div class="container">
+        <span class="eyebrow" style="justify-content:center;"><span class="frame-no">STAR 02</span> · Offers</span>
+        <h2 class="section-heading">Tools built<br>feeling-first</h2>
+        <p class="section-lede" style="margin: 0 auto 8px;">
+          Every tool here maps a feeling to a mode, a soundscape, or a session —
+          no theory required.
         </p>
-        <div class="hero-ctas">
-          <a class="btn-primary" href="https://titosilversax.bandcamp.com/" target="_blank" rel="noopener">
-            Listen on Bandcamp
-          </a>
-          <a class="btn-secondary" href="/offers">Explore the Offers</a>
-        </div>
-        <p class="hero-quote">Damn the rules — it's the feeling that counts.</p>
       </div>
-      <div class="hero-frame">
-        <div class="hero-edgecode">TITO SILVERSAX · SPIRIT-FIRST</div>
-        <img src="/images/tito-playing.webp" alt="Tito Silversax playing tenor saxophone" width="960" height="1100">
-        <div class="hero-frame-caption"><span class="rec-dot"></span> Live take · no click track</div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ══════════════════════════════
-       ABOUT
-       ══════════════════════════════ -->
-  <section class="about" id="about">
-    <div class="container container--wide">
-      <div class="about-grid">
-        <div class="about-frames">
-          <div class="about-frame">
-            <span class="about-frame-no">04</span>
-            <img src="/images/tito-portrait.webp" alt="Tito Silversax with tenor saxophone" width="340" height="453">
-          </div>
-          <div class="about-frame">
-            <span class="about-frame-no">05</span>
-            <img src="/images/tito-playing.webp" alt="Tito playing tenor saxophone" width="340" height="453" loading="lazy">
-          </div>
+      <div class="offers-thread">
+        <div class="thread-offer thread-offer--left">
+          <span class="thread-offer-num">01</span>
+          <span class="thread-offer-name">The Emotional Star Map</span>
+          <span class="thread-offer-tag">Free → $27</span>
         </div>
-        <div class="about-notes">
-          <span class="eyebrow"><span class="frame-no">SESSION NOTES</span></span>
-          <h2 class="section-heading" style="font-size: clamp(1.7rem, 4.5vw, 2.6rem); text-transform:none;">If music has ever felt like the only thing that understood you</h2>
-          <p style="font-family: var(--ff-mono); color: var(--violet); font-size: 0.85rem; margin-bottom: 18px;">You're in the right place.</p>
-          <p class="about-body">
-            I'm Tito — a Puerto Rican-American ambient saxophonist and
-            state-certified peer support specialist in Cleveland, Ohio.
-            Drawing on mystical experience, contemplative Christian faith,
-            and Taíno roots, I play spirit-first, swimming in what Toru
-            Takemitsu called the sea of tonality: improvisation over my own
-            arrangements, with advanced harmony as the poetic language.
-            I wrote <em>The Saxophonist's Compendium</em> and
-            <em>The Emotional Star Map</em>, and I play out in Cleveland's
-            jazz and improv scene. Sam Newsome, Takemitsu, Debussy, Satie,
-            Beethoven, Tomasz Stańko, and Stephan Micus shape my ear;
-            Coltrane and Miles Davis remain my muses.
-          </p>
-          <p class="about-marginalia">Peer Support · Modal Music — every recording and every guide comes from the same practice, not a course written about it.</p>
+        <div class="thread-offer thread-offer--right">
+          <span class="thread-offer-num">02</span>
+          <span class="thread-offer-name">The Saxophonist's Compendium</span>
+          <span class="thread-offer-tag">$27</span>
+        </div>
+        <div class="thread-offer thread-offer--left">
+          <span class="thread-offer-num">03</span>
+          <span class="thread-offer-name">A Contemplative Music Practice in a Box</span>
+          <span class="thread-offer-tag">$97</span>
+        </div>
+        <div class="thread-offer thread-offer--right">
+          <span class="thread-offer-num">04</span>
+          <span class="thread-offer-name">Inner Life of Sound</span>
+          <span class="thread-offer-tag">Apply now</span>
         </div>
       </div>
-    </div>
-  </section>
 
-  <div class="divider"></div>
-
-  <!-- ══════════════════════════════
-       OFFERINGS TEASER / REEL INDEX
-       ══════════════════════════════ -->
-  <section class="reel" id="offerings">
-    <div class="container" style="padding-top: 72px;">
-      <span class="eyebrow"><span class="frame-no">STAR 02</span> · Offers</span>
-      <h2 class="section-heading">Tools built<br>feeling-first</h2>
-      <p class="section-lede" style="margin-bottom: 8px;">
-        Every tool here maps a feeling to a mode, a soundscape, or a session —
-        no theory required.
-      </p>
-      <ul class="reel-index">
-        <li><span class="num">01</span><span class="name">The Emotional Star Map</span><span class="tag">Free → $27</span></li>
-        <li><span class="num">02</span><span class="name">The Saxophonist's Compendium</span><span class="tag">$27</span></li>
-        <li><span class="num">03</span><span class="name">A Contemplative Music Practice in a Box</span><span class="tag">$97</span></li>
-        <li><span class="num">04</span><span class="name">Inner Life of Sound</span><span class="tag">Apply now</span></li>
-      </ul>
       <a class="btn-primary" href="/offers">Explore the Offers</a>
-    </div>
-  </section>
+    </section>
 
-  <div class="divider"></div>
+    <div class="thread-node" aria-hidden="true"></div>
 
-  <!-- ══════════════════════════════
-       COMMUNITY
-       ══════════════════════════════ -->
-  <section class="strip-section">
-    <div class="container">
-      <span class="eyebrow" style="justify-content:center;"><span class="frame-no">STAR 03</span> · Community</span>
-      <h2 class="section-heading">Meditative<br>Musicians</h2>
-      <p class="section-lede" style="margin: 0 auto 28px;">
-        A small group of musicians exploring sound as a contemplative practice —
-        tuning systems, sacred geometry, improvisation, and the inner work that
-        makes it all mean something. Come hang out.
-      </p>
-      <a class="btn-secondary" href="https://www.skool.com/meditative-musicians-6593/about" target="_blank" rel="noopener">Join the Community</a>
-    </div>
-  </section>
+    <!-- ══════════════════════════════
+         COMMUNITY
+         ══════════════════════════════ -->
+    <section class="node strip-section">
+      <div class="container">
+        <span class="eyebrow" style="justify-content:center;"><span class="frame-no">STAR 03</span> · Community</span>
+        <h2 class="section-heading">Meditative<br>Musicians</h2>
+        <p class="section-lede" style="margin: 0 auto 28px;">
+          A small group of musicians exploring sound as a contemplative practice —
+          tuning systems, sacred geometry, improvisation, and the inner work that
+          makes it all mean something. Come hang out.
+        </p>
+        <a class="btn-secondary" href="https://www.skool.com/meditative-musicians-6593/about" target="_blank" rel="noopener">Join the Community</a>
+      </div>
+    </section>
 
-  <div class="divider"></div>
+    <div class="thread-node" aria-hidden="true"></div>
 
-  <!-- ══════════════════════════════
-       CONTACT
-       ══════════════════════════════ -->
-  <section class="contact" id="contact">
-    <div class="container">
-      <span class="eyebrow" style="justify-content:center;"><span class="frame-no">STAR 04</span> · Get in touch</span>
-      <h2 class="contact-heading">Let's talk.</h2>
-      <p class="contact-sub">
-        Whether you have questions, want to work together, or just want to say hi —
-        I'd love to hear from you.
-      </p>
-      <a class="contact-email" href="mailto:hello@titosilversax.com">hello@titosilversax.com</a>
-    </div>
-  </section>
+    <!-- ══════════════════════════════
+         CONTACT — THE THREAD ENDS HERE
+         ══════════════════════════════ -->
+    <section class="node contact" id="contact">
+      <div class="container">
+        <span class="eyebrow" style="justify-content:center;"><span class="frame-no">STAR 04</span> · Get in touch</span>
+        <h2 class="contact-heading">Let's talk.</h2>
+        <p class="contact-sub">
+          Whether you have questions, want to work together, or just want to say hi —
+          I'd love to hear from you.
+        </p>
+        <a class="contact-email" href="mailto:hello@titosilversax.com">hello@titosilversax.com</a>
+      </div>
+    </section>
+  </div>
 
   <!-- ══════════════════════════════
        FOOTER
@@ -415,6 +493,21 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       </div>
     </div>
   </footer>
+
+  <!-- The sky itself responds to how far you've traveled down the thread. -->
+  <script>
+    (function () {
+      var root = document.documentElement;
+      function updateScrollProgress() {
+        var scrolled = window.scrollY;
+        var max = document.body.scrollHeight - window.innerHeight;
+        var progress = max > 0 ? scrolled / max : 0;
+        root.style.setProperty('--scroll-progress', progress.toFixed(3));
+      }
+      window.addEventListener('scroll', updateScrollProgress, { passive: true });
+      updateScrollProgress();
+    })();
+  </script>
 
 </body>
 </html>

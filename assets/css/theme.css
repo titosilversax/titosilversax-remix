@@ -90,6 +90,10 @@ body::after {
     radial-gradient(60% 40% at 15% 0%, rgba(var(--violet-rgb), 0.16) 0%, transparent 60%),
     radial-gradient(50% 35% at 90% 15%, rgba(var(--cyan-rgb), 0.10) 0%, transparent 60%),
     radial-gradient(55% 45% at 50% 100%, rgba(var(--coral-rgb), 0.08) 0%, transparent 60%);
+  /* the sky drifts as you travel down the thread, not a static backdrop
+     repeated behind stacked boxes — see index.html's scroll-progress script */
+  filter: hue-rotate(calc(var(--scroll-progress, 0) * 50deg));
+  transition: filter 0.2s linear;
 }
 
 a { color: inherit; }
