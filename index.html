@@ -79,7 +79,7 @@
       border: 1px dashed var(--rule-strong);
       border-radius: 2px;
     }
-    .hero-quote::before { content: '“'; color: var(--light-leak); font-size: 1.1rem; }
+    .hero-quote::before { content: '“'; color: var(--sepia); font-size: 1.1rem; }
 
     .hero-frame {
       position: relative;
@@ -98,8 +98,8 @@
       content: '';
       position: absolute; inset: 0;
       background:
-        linear-gradient(105deg, rgba(255,138,51,0.4) 0%, rgba(255,138,51,0) 32%),
-        linear-gradient(0deg, rgba(14,15,16,0.75) 0%, transparent 42%);
+        linear-gradient(105deg, rgba(var(--light-leak-rgb),0.4) 0%, rgba(var(--light-leak-rgb),0) 32%),
+        linear-gradient(0deg, rgba(23,19,16,0.75) 0%, transparent 42%);
       mix-blend-mode: multiply;
     }
     .hero-frame-tag {
@@ -110,8 +110,8 @@
       font-size: 0.72rem;
       letter-spacing: 0.08em;
       color: var(--paper);
-      background: rgba(14,15,16,0.6);
-      border: 1px solid rgba(236,232,222,0.25);
+      background: rgba(23,19,16,0.6);
+      border: 1px solid rgba(239,230,211,0.25);
       padding: 5px 9px;
       border-radius: 2px;
     }
@@ -131,7 +131,6 @@
     .hero-frame-caption .rec-dot {
       width: 7px; height: 7px; border-radius: 50%;
       background: var(--light-leak);
-      box-shadow: 0 0 8px var(--light-leak);
       flex-shrink: 0;
     }
     .hero-edgecode {
@@ -171,7 +170,7 @@
     .about-frame-no {
       position: absolute; top: 10px; left: 10px;
       font-family: var(--ff-mono); font-size: 0.65rem; color: var(--paper);
-      background: rgba(14,15,16,0.55); padding: 3px 7px; border-radius: 2px;
+      background: rgba(23,19,16,0.55); padding: 3px 7px; border-radius: 2px;
       letter-spacing: 0.05em;
     }
     .about-notes { font-family: var(--ff-body); }
@@ -203,7 +202,7 @@
       font-family: var(--ff-mono);
     }
     .reel-index li:first-child { border-top: 1px solid var(--rule); }
-    .reel-index .num { color: var(--light-leak); font-size: 0.85rem; flex-shrink: 0; width: 28px; }
+    .reel-index .num { color: var(--sepia); font-size: 0.85rem; flex-shrink: 0; width: 28px; }
     .reel-index .name { color: var(--paper); font-size: 1rem; font-family: var(--ff-body); font-weight: 600; }
     .reel-index .tag { margin-left: auto; color: var(--base-gray); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; }
 
@@ -219,7 +218,7 @@
       font-size: clamp(1rem, 3vw, 1.3rem);
       color: var(--light-leak);
       text-decoration: none;
-      border-bottom: 1px solid rgba(255,138,51,0.4);
+      border-bottom: 1px solid rgba(var(--light-leak-rgb),0.4);
       padding-bottom: 3px;
       transition: color 0.2s, border-color 0.2s;
       display: inline-block;
@@ -345,7 +344,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         <li><span class="num">01</span><span class="name">The Emotional Star Map</span><span class="tag">Free → $27</span></li>
         <li><span class="num">02</span><span class="name">The Saxophonist's Compendium</span><span class="tag">$27</span></li>
         <li><span class="num">03</span><span class="name">A Contemplative Music Practice in a Box</span><span class="tag">$97</span></li>
-        <li><span class="num">04</span><span class="name">Peer Support Sessions</span><span class="tag">Sliding scale</span></li>
+        <li><span class="num">04</span><span class="name">Inner Life of Sound</span><span class="tag">Apply now</span></li>
       </ul>
       <a class="btn-primary" href="/offers">Explore the Offers</a>
     </div>

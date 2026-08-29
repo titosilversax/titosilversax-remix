@@ -3,28 +3,38 @@
    World: Hand-Processed Film — a strip of 16mm carrying scratches,
    uneven chemistry, and light leaks; the emulsion itself joins the
    recording. Tito is a recording artist first — every soundscape,
-   every guide, is a session that survived being made. This system
-   treats the SITE as the archive that recovered them: numbered
-   reels, frame-banded content, sprocket chrome, one hard accent
-   (light-leak orange) marking whatever is alive right now.
+   every guide, is a session that survived being made. The site
+   treats itself as the archive that recovered them: numbered reels,
+   frame-banded content, sprocket chrome.
+
+   Two colors carry real, distinct jobs — not one neon accent on
+   black. Chemical stain (brass/ochre) is ambient and everywhere:
+   hovers, secondary borders, every card's resting state — the way
+   real film picks up chemistry on every frame. Light leak (orange)
+   is rare and dramatic: one primary action per view, the tally-light
+   dot, the moment something is actively "live." Flat, hard edges
+   throughout — stamped ink and printed paper don't glow.
    ═══════════════════════════════════════════════════════════════ */
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* ── Color & material ── */
-  --leader:        #0e0f10;  /* ground */
-  --leader-2:      #17181a;  /* raised surface */
-  --leader-3:      #202224;  /* card surface */
-  --base-gray:     #8a8f93;  /* AA-safe muted label color (5.9:1 on --leader) */
-  --emulsion:      #a6abb0;  /* body text on dark */
-  --paper:         #ece8de;  /* headings, near-white warm */
-  --sepia:         #c8b089;  /* chemical stain accent */
-  --light-leak:    #ff8a33;  /* THE accent — CTAs, active state, signal */
-  --light-leak-2:  #d1631f;  /* gradient dark end, kept ≥4.5:1 under --leader text */
-  --rule:          rgba(166, 171, 176, 0.16);
-  --rule-strong:   rgba(166, 171, 176, 0.3);
-  --grain-opacity: 0.05;
+  /* ── Color & material — warm, not a designer-app neutral black ── */
+  --leader:          #171310;  /* ground: aged film base, not pure black */
+  --leader-2:         #201a15;  /* raised surface (nav, card bars) */
+  --leader-3:         #2b2318;  /* card surface */
+  --base-gray:        #9d917f;  /* muted labels/metadata (AA-safe: 5.0:1 on --leader-3) */
+  --emulsion:         #b7ab9b;  /* body text on dark */
+  --paper:            #efe6d3;  /* headings, warm ivory print stock */
+
+  --sepia:            #c39a5c;  /* chemical stain — the ambient structural color */
+  --sepia-rgb:         195, 154, 92;
+  --light-leak:        #e0752f;  /* the rare accent — one primary action, one live signal */
+  --light-leak-rgb:     224, 117, 47;
+
+  --rule:             rgba(183, 171, 155, 0.16);
+  --rule-strong:      rgba(183, 171, 155, 0.3);
+  --grain-opacity:    0.05;
 
   --ff-display: 'Anton', 'Oswald', sans-serif;
   --ff-body:    'Archivo', system-ui, -apple-system, sans-serif;
@@ -75,7 +85,7 @@ h1, h2, h3, h4 { font-family: var(--ff-display); font-weight: 400; color: var(--
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--light-leak);
+  color: var(--sepia);
   margin-bottom: 18px;
 }
 
@@ -84,8 +94,7 @@ h1, h2, h3, h4 { font-family: var(--ff-display); font-weight: 400; color: var(--
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--light-leak);
-  box-shadow: 0 0 8px var(--light-leak);
+  background: var(--sepia);
   flex-shrink: 0;
 }
 
@@ -124,23 +133,6 @@ h1, h2, h3, h4 { font-family: var(--ff-display); font-weight: 400; color: var(--
   background: repeating-linear-gradient(90deg, var(--rule) 0 6px, transparent 6px 12px);
 }
 
-/* ── Sprocket chrome (nav / footer / hero edge) ── */
-.sprockets {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  gap: 6px;
-  padding: 6px 0;
-}
-.sprockets span {
-  width: 9px;
-  height: 9px;
-  border-radius: 2px;
-  background: var(--leader);
-  border: 1px solid rgba(236, 232, 222, 0.14);
-  flex-shrink: 0;
-}
-
 /* ── NAV ── */
 .nav {
   position: fixed;
@@ -150,12 +142,12 @@ h1, h2, h3, h4 { font-family: var(--ff-display); font-weight: 400; color: var(--
   align-items: center;
   justify-content: space-between;
   padding: 14px 24px;
-  background: linear-gradient(to bottom, rgba(14,15,16,0.97) 0%, rgba(14,15,16,0.86) 80%, transparent 100%);
+  background: linear-gradient(to bottom, rgba(23,19,16,0.97) 0%, rgba(23,19,16,0.86) 80%, transparent 100%);
   border-bottom: 1px solid transparent;
   transition: border-color 0.25s, background 0.25s;
 }
 .nav.scrolled {
-  background: rgba(14, 15, 16, 0.96);
+  background: rgba(23, 19, 16, 0.96);
   border-bottom-color: var(--rule);
   backdrop-filter: blur(10px);
 }
@@ -183,16 +175,16 @@ h1, h2, h3, h4 { font-family: var(--ff-display); font-weight: 400; color: var(--
   transition: color 0.2s;
   position: relative;
 }
-.nav-links a::before { content: '// '; color: var(--light-leak); opacity: 0; transition: opacity 0.2s; }
+.nav-links a::before { content: '// '; color: var(--sepia); opacity: 0; transition: opacity 0.2s; }
 .nav-links a:hover { color: var(--paper); }
 .nav-links a:hover::before { opacity: 1; }
 
-/* ── BUTTONS (stamped film-leader tabs) ── */
+/* ── BUTTONS (stamped film-leader tabs — flat ink, no glow) ── */
 .btn-primary, a.convertkit-button, .convertkit-button {
   display: inline-flex !important;
   align-items: center;
   gap: 10px;
-  background: linear-gradient(180deg, var(--light-leak) 0%, var(--light-leak-2) 100%) !important;
+  background: var(--light-leak) !important;
   color: var(--leader) !important;
   font-family: var(--ff-mono) !important;
   font-size: 0.82rem !important;
@@ -205,8 +197,8 @@ h1, h2, h3, h4 { font-family: var(--ff-display); font-weight: 400; color: var(--
   border-radius: 2px !important;
   cursor: pointer;
   position: relative;
-  box-shadow: 0 0 0 1px rgba(0,0,0,0.25), 0 6px 20px rgba(255,138,51,0.22) !important;
-  transition: box-shadow 0.25s, transform 0.15s, filter 0.25s;
+  box-shadow: 3px 3px 0 0 rgba(0,0,0,0.3) !important;
+  transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
   width: auto !important;
   text-align: center;
 }
@@ -219,9 +211,9 @@ a.convertkit-button::before, a.convertkit-button::after {
   flex-shrink: 0;
 }
 .btn-primary:hover, a.convertkit-button:hover, .convertkit-button:hover {
-  filter: brightness(1.1);
-  box-shadow: 0 0 0 1px rgba(0,0,0,0.25), 0 10px 28px rgba(255,138,51,0.34) !important;
-  transform: translateY(-1px);
+  background: #ea8544 !important;
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 0 rgba(0,0,0,0.3) !important;
 }
 
 .btn-secondary {
@@ -242,13 +234,17 @@ a.convertkit-button::before, a.convertkit-button::after {
   cursor: pointer;
   transition: color 0.2s, border-color 0.2s, background 0.2s;
 }
-.btn-secondary:hover { color: var(--paper); border-color: var(--emulsion); background: rgba(236,232,222,0.03); }
+.btn-secondary:hover { color: var(--paper); border-color: var(--sepia); background: rgba(var(--sepia-rgb), 0.06); }
 
-/* ── Frame card (offers, testimonials, generic content unit) ── */
+/* ── Frame card (offers, testimonials, generic content unit) ──
+   Every card carries the ambient sepia by default — color is never
+   only on the one "featured" card. --lit swaps that accent to the
+   rare orange to mark the actively recommended/live item. */
 .frame-card {
   background: var(--leader-3);
   border: 1px solid var(--rule);
-  border-radius: 3px;
+  border-top: 2px solid rgba(var(--sepia-rgb), 0.55);
+  border-radius: 0 0 3px 3px;
   position: relative;
   overflow: hidden;
 }
@@ -265,25 +261,11 @@ a.convertkit-button::before, a.convertkit-button::after {
   color: var(--base-gray);
   background: var(--leader-2);
 }
-.frame-card__bar .tag { color: var(--light-leak); }
+.frame-card__bar .tag { color: var(--sepia); }
 .frame-card__body { padding: 28px 24px; }
-.frame-card--lit { border-color: rgba(255,138,51,0.4); box-shadow: 0 0 0 1px rgba(255,138,51,0.12); }
-.frame-card--lit .frame-card__bar { background: linear-gradient(180deg, rgba(255,138,51,0.14), transparent); border-bottom-color: rgba(255,138,51,0.3); }
-
-.badge {
-  display: inline-block;
-  font-family: var(--ff-mono);
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 4px 9px;
-  border-radius: 2px;
-  border: 1px solid currentColor;
-}
-.badge--free { color: #7fd9a8; }
-.badge--rec  { color: var(--light-leak); }
-.badge--new  { color: #9ab6d9; }
+.frame-card--lit { border-color: rgba(var(--light-leak-rgb), 0.4); border-top-color: var(--light-leak); }
+.frame-card--lit .frame-card__bar { border-bottom-color: rgba(var(--light-leak-rgb), 0.3); }
+.frame-card--lit .frame-card__bar .tag { color: var(--light-leak); }
 
 /* ── FAQ ── */
 details.faq-item {
@@ -306,12 +288,12 @@ details.faq-item summary {
 }
 details.faq-item summary::-webkit-details-marker,
 details.faq-item summary::marker { display: none; }
-details.faq-item summary:hover { color: var(--light-leak); }
+details.faq-item summary:hover { color: var(--sepia); }
 .faq-icon {
   flex-shrink: 0;
   font-family: var(--ff-mono);
   font-size: 1.1rem;
-  color: var(--light-leak);
+  color: var(--sepia);
   width: 20px;
   text-align: center;
   transition: transform 0.25s;
@@ -334,10 +316,10 @@ details[open].faq-item .faq-icon { transform: rotate(45deg); }
   text-decoration: none;
   transition: color 0.2s;
 }
-.footer-social a:hover, .footer-nav a:hover { color: var(--light-leak); }
+.footer-social a:hover, .footer-nav a:hover { color: var(--sepia); }
 .footer-legal { font-size: 0.74rem; color: var(--base-gray); line-height: 1.8; font-family: var(--ff-mono); }
 .footer-legal a { color: var(--base-gray); text-decoration: none; }
-.footer-legal a:hover { color: var(--light-leak); }
+.footer-legal a:hover { color: var(--sepia); }
 
 /* ── Utility ── */
 .text-center { text-align: center; }
