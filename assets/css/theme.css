@@ -38,7 +38,8 @@
   --rule-strong:      rgba(196, 189, 224, 0.28);
   --grain-opacity:    0.4;
 
-  --ff-display: 'Anton', 'Oswald', sans-serif;
+  --ff-display: 'Anton', 'Oswald', sans-serif;         /* prices, roman numerals, list numbers, footer wordmark — not headings */
+  --ff-script:  'Dancing Script', cursive;              /* every real heading */
   --ff-body:    'Archivo', system-ui, -apple-system, sans-serif;
   --ff-mono:    'JetBrains Mono', ui-monospace, monospace;
 }
@@ -100,7 +101,7 @@ img { max-width: 100%; display: block; }
 ::selection { background: var(--coral); color: var(--leader); }
 
 /* ── Type scale ── */
-h1, h2, h3, h4 { font-family: var(--ff-display); font-weight: 400; color: var(--paper); text-transform: uppercase; letter-spacing: 0.01em; line-height: 0.98; }
+h1, h2, h3, h4 { font-family: var(--ff-script); font-weight: 700; color: var(--paper); letter-spacing: normal; line-height: 1.15; }
 
 .eyebrow {
   display: flex;
@@ -131,12 +132,11 @@ h1, h2, h3, h4 { font-family: var(--ff-display); font-weight: 400; color: var(--
 }
 
 .section-heading {
-  font-family: var(--ff-display);
-  font-size: clamp(2rem, 6vw, 3.2rem);
-  line-height: 0.98;
+  font-family: var(--ff-script);
+  font-size: clamp(2.3rem, 6.5vw, 3.6rem);
+  line-height: 1.1;
   color: var(--paper);
   margin-bottom: 20px;
-  text-transform: uppercase;
 }
 
 .section-lede {

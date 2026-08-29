@@ -10,7 +10,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Dancing+Script:wght@400;500;600;700&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/assets/css/theme.css">
 
@@ -26,14 +26,17 @@
     }
     .doc-jump a:hover { color: var(--violet); border-color: var(--violet); }
 
-    .doc-title { font-size: clamp(2rem, 5.5vw, 3.2rem); margin-bottom: 10px; }
+    .doc-title { font-size: clamp(2.4rem, 6.5vw, 4rem); margin-bottom: 10px; }
     .doc-meta { font-family: var(--ff-mono); font-size: 0.78rem; color: var(--base-gray); }
 
     .doc-section { padding: 56px 0; max-width: 680px; margin: 0 auto; }
     .doc-section:not(:last-of-type) { border-bottom: 1px solid var(--rule); }
     .doc-section .eyebrow { justify-content: flex-start; }
 
-    .doc-body h2 { font-size: 1.05rem; letter-spacing: 0.02em; color: var(--paper); margin: 40px 0 12px; }
+    /* Legal clause headers stay plain and legible on purpose — this is
+       Privacy/Terms text, not brand expression; script here would work
+       against the reader, not for the "magical" brief. */
+    .doc-body h2 { font-family: var(--ff-body); font-weight: 700; font-size: 1.05rem; letter-spacing: 0.02em; color: var(--paper); margin: 40px 0 12px; }
     .doc-body h2:first-of-type { margin-top: 0; }
     .doc-body p { font-family: var(--ff-body); font-size: 0.96rem; color: var(--emulsion); margin-bottom: 14px; line-height: 1.8; }
     .doc-body ul { padding-left: 20px; margin-bottom: 14px; }
