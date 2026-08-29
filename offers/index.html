@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Offers | Tito Silversax</title>
   <meta name="description" content="Guides, practices, and peer support for feeling-first musicians: The Emotional Star Map, The Saxophonist's Compendium, and A Contemplative Music Practice in a Box." />
-  <link rel="icon" type="image/png" href="/home/favicon.png" />
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://titosilversax.com/offers" />
   <meta property="og:title" content="Offers | Tito Silversax" />
   <meta property="og:description" content="Guides, practices, and peer support for feeling-first musicians." />
-  <meta property="og:image" content="https://titosilversax.com/home/og-preview.png" />
+  <meta property="og:image" content="https://titosilversax.com/images/og-preview.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
   <!-- Google Analytics -->
@@ -29,940 +29,61 @@
   <!-- Vercel Analytics -->
   <script defer src="/_vercel/insights/script.js"></script>
 
-  <!-- Google Fonts -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/css/theme.css">
 
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg:           #06070f;
-      --surface:      #0b0e1c;
-      --surface-2:    #111829;
-      --purple-glow:  rgba(139, 92, 246, 0.14);
-      --blue-glow:    rgba(59, 130, 246, 0.1);
-      --emerald-glow: rgba(16, 185, 129, 0.1);
-      --gold:         #c9963a;
-      --gold-bright:  #e8b94f;
-      --gold-glow:    rgba(201, 150, 58, 0.25);
-      --text:         #dde4f2;
-      --text-muted:   #8898b8;
-      --divider:      rgba(139, 92, 246, 0.22);
-      --ff-head:      'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-      --ff-body:      'Inter', system-ui, -apple-system, sans-serif;
-    }
-
-    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
-
-    body {
-      background-color: var(--bg);
-      background-image: url('/images/background.webp?v=2');
-      background-size: cover;
-      background-position: center bottom;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      color: var(--text);
-      font-family: var(--ff-body);
-      font-size: 16px;
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    .container--wide {
-      max-width: 960px;
-    }
-
-    .divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--divider), transparent);
-      margin: 64px 0;
-    }
-
-    .section-label {
-      display: block;
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 16px;
-    }
-
-    .section-heading {
-      font-family: var(--ff-head);
-      font-size: clamp(1.7rem, 4.5vw, 2.6rem);
-      font-weight: 600;
-      line-height: 1.15;
-      color: #eef1fb;
-      margin-bottom: 20px;
-    }
-
-    /* ── NAV ── */
-    .nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      padding: 20px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: linear-gradient(to bottom, rgba(6,7,15,0.95) 0%, rgba(6,7,15,0) 100%);
-      backdrop-filter: blur(0px);
-      transition: backdrop-filter 0.3s, background 0.3s;
-    }
-
-    .nav.scrolled {
-      background: rgba(6, 7, 15, 0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--divider);
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-    }
-
-    .nav-logo img {
-      height: 132px;
-      width: auto;
-      display: block;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--text); }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100dvh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 120px 24px 80px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background-image: url('/images/background.webp');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.18;
-      z-index: 0;
-    }
-
-    .hero-bg::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 100% 60% at 50% 100%, var(--bg) 0%, transparent 60%),
-        radial-gradient(ellipse 80% 40% at 50% 0%, rgba(30, 58, 138, 0.3) 0%, transparent 70%);
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-      max-width: 680px;
-    }
-
-    .hero-eyebrow {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 28px;
-      display: block;
-    }
-
-    .hero-headline {
-      font-family: var(--ff-head);
-      font-size: clamp(2.4rem, 7vw, 4rem);
-      font-weight: 600;
-      line-height: 1.1;
-      letter-spacing: -0.01em;
-      color: #eef1fb;
-      margin-bottom: 24px;
-    }
-
-    .hero-headline em {
-      font-style: italic;
-      font-weight: 300;
-      color: #b8c8e8;
-    }
-
-    .hero-sub {
-      font-family: var(--ff-head);
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
-      font-style: italic;
-      font-weight: 300;
-      color: #b8c8e8;
-      line-height: 1.65;
-      margin-bottom: 40px;
-      max-width: 520px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .hero-ctas {
-      display: flex;
-      gap: 14px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 32px;
-    }
-
-    .btn-primary {
-      display: inline-block;
-      background: linear-gradient(135deg, #b8862e 0%, #e0ac48 50%, #b8862e 100%);
-      background-size: 200% 100%;
-      color: #0b0a06;
-      font-family: var(--ff-body);
-      font-size: 0.88rem;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      text-decoration: none;
-      padding: 14px 28px;
-      border-radius: 3px;
-      border: none;
-      cursor: pointer;
-      transition: background-position 0.4s, box-shadow 0.3s, transform 0.15s;
-      box-shadow: 0 0 28px var(--gold-glow), 0 4px 16px rgba(0,0,0,0.4);
-    }
-
-    .btn-primary:hover {
-      background-position: 100% 0;
-      box-shadow: 0 0 44px var(--gold-glow), 0 6px 24px rgba(0,0,0,0.5);
-      transform: translateY(-1px);
-    }
-
-    .btn-secondary {
-      display: inline-block;
-      background: transparent;
-      color: var(--text-muted);
-      font-family: var(--ff-body);
-      font-size: 0.88rem;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      text-decoration: none;
-      padding: 14px 28px;
-      border-radius: 3px;
-      border: 1px solid rgba(136, 152, 184, 0.25);
-      cursor: pointer;
-      transition: color 0.2s, border-color 0.2s;
-    }
-
-    .btn-secondary:hover {
-      color: var(--text);
-      border-color: rgba(136, 152, 184, 0.5);
-    }
-
-    .hero-quote {
-      font-family: var(--ff-head);
-      font-size: 0.95rem;
-      font-style: italic;
-      color: rgba(136, 152, 184, 0.6);
-      letter-spacing: 0.02em;
-    }
-
-    /* ── ABOUT ── */
-    .about {
-      padding: 80px 0;
-      background-image: radial-gradient(ellipse 80% 60% at 80% 50%, rgba(6, 78, 59, 0.1) 0%, transparent 60%);
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 48px;
-      align-items: center;
-    }
-
-    .about-img-wrap {
-      position: relative;
-      display: flex;
-      justify-content: center;
-    }
-
-    .about-img-wrap::before {
-      content: '';
-      position: absolute;
-      inset: -16px;
-      border-radius: 4px;
-      background: radial-gradient(ellipse at center, var(--purple-glow) 0%, transparent 70%);
-      filter: blur(24px);
-    }
-
-    .about-img {
-      width: 100%;
-      max-width: 340px;
-      height: auto;
-      border-radius: 3px;
-      box-shadow:
-        0 0 0 1px rgba(139, 92, 246, 0.18),
-        0 8px 40px rgba(0,0,0,0.6);
-      position: relative;
-      display: block;
-    }
-
-    .about-tag {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 20px;
-      display: block;
-    }
-
-    .about-heading {
-      font-family: var(--ff-head);
-      font-size: clamp(1.8rem, 5vw, 2.8rem);
-      font-weight: 600;
-      line-height: 1.15;
-      color: #eef1fb;
-      margin-bottom: 12px;
-    }
-
-    .about-sub {
-      font-family: var(--ff-head);
-      font-size: 1.1rem;
-      font-style: italic;
-      color: var(--gold);
-      margin-bottom: 20px;
-    }
-
-    .about-body {
-      font-size: 1rem;
-      color: var(--text);
-      line-height: 1.8;
-    }
-
-    /* ── OFFERINGS ── */
-    .offerings {
-      padding: 80px 0;
-      background-image: radial-gradient(ellipse 90% 50% at 50% 50%, rgba(76, 29, 149, 0.08) 0%, transparent 65%);
-    }
-
-    .offerings-header {
-      text-align: center;
-      margin-bottom: 16px;
-    }
-
-    .offerings-subtext {
-      font-family: var(--ff-head);
-      font-size: 1.1rem;
-      font-style: italic;
-      color: var(--text-muted);
-      text-align: center;
-      margin-bottom: 12px;
-    }
-
-    .offerings-avail {
-      font-size: 0.78rem;
-      color: rgba(136, 152, 184, 0.5);
-      text-align: center;
-      letter-spacing: 0.04em;
-      margin-bottom: 48px;
-    }
-
-    .offerings-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 24px;
-    }
-
-    .convertkit-button,
-    a.convertkit-button {
-      display: inline-block !important;
-      background: linear-gradient(135deg, #b8862e 0%, #e0ac48 50%, #b8862e 100%) !important;
-      background-size: 200% 100% !important;
-      color: #0b0a06 !important;
-      font-family: var(--ff-body) !important;
-      font-size: 0.88rem !important;
-      font-weight: 500 !important;
-      letter-spacing: 0.05em !important;
-      text-decoration: none !important;
-      padding: 14px 28px !important;
-      border-radius: 3px !important;
-      border: none !important;
-      cursor: pointer !important;
-      width: 100% !important;
-      text-align: center !important;
-      box-shadow: 0 0 28px var(--gold-glow), 0 4px 16px rgba(0,0,0,0.4) !important;
-      transition: background-position 0.4s, box-shadow 0.3s, transform 0.15s !important;
-    }
-
-    .convertkit-button:hover,
-    a.convertkit-button:hover {
-      background-position: 100% 0 !important;
-      box-shadow: 0 0 44px var(--gold-glow), 0 6px 24px rgba(0,0,0,0.5) !important;
-      transform: translateY(-1px) !important;
-    }
-
-    .offering-card {
-      background: linear-gradient(135deg, var(--surface) 0%, #0f1428 100%);
-      border: 1px solid rgba(139, 92, 246, 0.18);
-      border-radius: 6px;
-      padding: 36px 32px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .offering-card--recommended {
-      border-color: rgba(201, 150, 58, 0.35);
-    }
-
-    .offering-card--recommended::before {
-      content: '';
-      position: absolute;
-      top: -40px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 200px;
-      height: 200px;
-      background: radial-gradient(circle, rgba(201, 150, 58, 0.08) 0%, transparent 70%);
-    }
-
-    .card-badge {
-      display: inline-block;
-      font-size: 9px;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: 2px;
-      margin-bottom: 16px;
-    }
-
-    .card-badge--free {
-      background: rgba(16, 185, 129, 0.15);
-      color: #34d399;
-      border: 1px solid rgba(16, 185, 129, 0.25);
-    }
-
-    .card-badge--recommended {
-      background: rgba(201, 150, 58, 0.15);
-      color: var(--gold-bright);
-      border: 1px solid rgba(201, 150, 58, 0.3);
-    }
-
-    .card-badge--companion {
-      background: rgba(59, 130, 246, 0.15);
-      color: #93c5fd;
-      border: 1px solid rgba(59, 130, 246, 0.25);
-    }
-
-    .card-badge--new {
-      background: rgba(139, 92, 246, 0.15);
-      color: #c4a7ff;
-      border: 1px solid rgba(139, 92, 246, 0.3);
-    }
-
-    .offering-card--practice {
-      border-color: rgba(139, 92, 246, 0.35);
-    }
-
-    .offering-card--companion {
-      border-color: rgba(59, 130, 246, 0.2);
-    }
-
-    .card-type {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      display: block;
-      margin-bottom: 6px;
-    }
-
-    .card-title {
-      font-family: var(--ff-head);
-      font-size: clamp(1.3rem, 3.5vw, 1.8rem);
-      font-weight: 600;
-      color: #eef1fb;
-      line-height: 1.2;
-      margin-bottom: 6px;
-    }
-
-    .card-price {
-      font-family: var(--ff-head);
-      font-size: 2rem;
-      font-weight: 600;
-      color: var(--gold-bright);
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-
-    .card-price-note {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      margin-bottom: 20px;
-      letter-spacing: 0.03em;
-    }
-
-    .card-desc {
-      font-size: 0.95rem;
-      color: var(--text);
-      line-height: 1.75;
-      margin-bottom: 24px;
-    }
-
-    .card-includes-label {
-      font-size: 9px;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 12px;
-      display: block;
-    }
-
-    .card-list {
-      list-style: none;
-      margin-bottom: 28px;
-    }
-
-    .card-list li {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      padding: 6px 0;
-      padding-left: 18px;
-      position: relative;
-      border-bottom: 1px solid rgba(139, 92, 246, 0.08);
-      line-height: 1.5;
-    }
-
+    .page-hero { padding: 128px 0 64px; border-bottom: 1px solid var(--rule); }
+    .page-hero h1 { font-size: clamp(2.6rem, 8vw, 4.6rem); margin-bottom: 16px; }
+    .page-hero .section-lede { max-width: 480px; }
+
+    .offerings { padding: 64px 0 88px; }
+    .offerings-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    @media (min-width: 720px) { .offerings-grid { grid-template-columns: 1fr 1fr; } }
+
+    .card-price-row { display: flex; align-items: baseline; gap: 10px; margin: 18px 0 4px; }
+    .card-price { font-family: var(--ff-display); font-size: 2.2rem; color: var(--paper); line-height: 1; text-transform: none; }
+    .frame-card--lit .card-price { color: var(--light-leak); }
+    .card-price-note { font-family: var(--ff-mono); font-size: 0.72rem; color: var(--base-gray); letter-spacing: 0.04em; }
+    .card-type { font-family: var(--ff-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--base-gray); display: block; margin-bottom: 10px; }
+    .card-title { font-family: var(--ff-body); font-weight: 700; font-size: 1.28rem; color: var(--paper); line-height: 1.25; margin-bottom: 4px; }
+    .card-desc { font-size: 0.95rem; color: var(--emulsion); line-height: 1.75; margin: 14px 0 20px; }
+    .card-includes-label { font-family: var(--ff-mono); font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--base-gray); display: block; margin-bottom: 10px; }
+    .card-list { list-style: none; margin-bottom: 24px; }
+    .card-list li { font-size: 0.88rem; color: var(--emulsion); padding: 7px 0; padding-left: 18px; position: relative; border-bottom: 1px solid var(--rule); line-height: 1.5; }
     .card-list li:last-child { border-bottom: none; }
+    .card-list li::before { content: '—'; position: absolute; left: 0; color: var(--light-leak); font-size: 0.8rem; }
+    .card-cta { width: 100%; justify-content: center; }
 
-    .card-list li::before {
-      content: '—';
-      position: absolute;
-      left: 0;
-      color: rgba(201, 150, 58, 0.5);
-      font-size: 0.8rem;
-    }
+    .process { padding: 0 0 88px; }
+    .process-grid { margin-top: 32px; }
+    .process-step { display: grid; grid-template-columns: 52px 1fr; gap: 20px; align-items: start; padding: 26px 0; border-bottom: 1px solid var(--rule); }
+    .process-step:first-child { border-top: 1px solid var(--rule); }
+    .process-num { font-family: var(--ff-display); font-size: 1.6rem; color: var(--light-leak); line-height: 1; padding-top: 2px; }
+    .process-title { font-family: var(--ff-body); font-weight: 700; font-size: 1.1rem; color: var(--paper); margin-bottom: 6px; }
+    .process-body { font-size: 0.92rem; color: var(--emulsion); line-height: 1.75; }
 
-    /* ── PROCESS ── */
-    .process {
-      padding: 80px 0;
-    }
-
-    .process-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0;
-      margin-top: 40px;
-    }
-
-    .process-step {
-      display: grid;
-      grid-template-columns: 48px 1fr;
-      gap: 20px;
-      align-items: start;
-      padding: 28px 0;
-      border-bottom: 1px solid rgba(139, 92, 246, 0.1);
-    }
-
-    .process-step:last-child { border-bottom: none; }
-
-    .process-num {
-      font-family: var(--ff-head);
-      font-size: 1.4rem;
-      font-weight: 300;
-      font-style: italic;
-      color: rgba(139, 92, 246, 0.45);
-      padding-top: 3px;
-    }
-
-    .process-title {
-      font-family: var(--ff-head);
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #eef1fb;
-      margin-bottom: 6px;
-    }
-
-    .process-body {
-      font-size: 0.92rem;
-      color: var(--text-muted);
-      line-height: 1.75;
-    }
-
-    /* ── SERVICES ── */
-    .services {
-      padding: 80px 0;
-      background-image: radial-gradient(ellipse 80% 50% at 20% 50%, rgba(30, 58, 138, 0.1) 0%, transparent 60%);
-    }
-
-    .services-pullquote {
-      font-family: var(--ff-head);
-      font-size: clamp(1.1rem, 3vw, 1.5rem);
-      font-style: italic;
-      font-weight: 300;
-      color: rgba(184, 200, 232, 0.7);
-      text-align: center;
-      margin-bottom: 12px;
-      line-height: 1.5;
-    }
-
-    .services-subhead {
-      text-align: center;
-      margin-bottom: 48px;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 24px;
-    }
-
-    .service-card {
-      background: linear-gradient(135deg, var(--surface) 0%, #0f1428 100%);
-      border: 1px solid rgba(59, 130, 246, 0.15);
-      border-radius: 6px;
-      padding: 36px 32px;
-    }
-
-    .service-type {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      display: block;
-      margin-bottom: 6px;
-    }
-
-    .service-title {
-      font-family: var(--ff-head);
-      font-size: clamp(1.3rem, 3.5vw, 1.7rem);
-      font-weight: 600;
-      color: #eef1fb;
-      margin-bottom: 16px;
-    }
-
-    .service-desc {
-      font-size: 0.95rem;
-      color: var(--text);
-      line-height: 1.75;
-      margin-bottom: 24px;
-    }
-
-    .service-list {
-      list-style: none;
-      margin-bottom: 28px;
-    }
-
-    .service-list li {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      padding: 5px 0 5px 18px;
-      position: relative;
-      border-bottom: 1px solid rgba(59, 130, 246, 0.08);
-    }
-
-    .service-list li:last-child { border-bottom: none; }
-
-    .service-list li::before {
-      content: '—';
-      position: absolute;
-      left: 0;
-      color: rgba(59, 130, 246, 0.4);
-    }
-
-    .service-ctas {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    /* ── FAQ ── */
-    .faq {
-      padding: 80px 0;
-    }
-
-    .faq-list {
-      margin-top: 40px;
-    }
-
-    details.faq-item {
-      border-bottom: 1px solid rgba(139, 92, 246, 0.15);
-    }
-
-    details.faq-item:first-child {
-      border-top: 1px solid rgba(139, 92, 246, 0.15);
-    }
-
-    details.faq-item summary {
-      list-style: none;
-      cursor: pointer;
-      padding: 22px 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: var(--ff-head);
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #dde4f2;
-      gap: 16px;
-      transition: color 0.2s;
-    }
-
-    details.faq-item summary::-webkit-details-marker { display: none; }
-    details.faq-item summary::marker { display: none; }
-
-    details.faq-item summary:hover { color: #eef1fb; }
-
-    .faq-icon {
-      flex-shrink: 0;
-      font-family: var(--ff-body);
-      font-size: 1.2rem;
-      font-weight: 300;
-      color: var(--gold);
-      width: 20px;
-      text-align: center;
-      transition: transform 0.25s;
-    }
-
-    details[open].faq-item .faq-icon {
-      transform: rotate(45deg);
-    }
-
-    .faq-answer {
-      padding: 0 0 24px;
-      font-size: 0.93rem;
-      color: var(--text-muted);
-      line-height: 1.8;
-      max-width: 560px;
-    }
-
-    /* ── CONTACT ── */
-    .contact {
-      padding: 80px 0;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .contact::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url('/home/contact-bg.jpg');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.06;
-    }
-
-    .contact-inner {
-      position: relative;
-      z-index: 1;
-    }
-
-    .contact-heading {
-      font-family: var(--ff-head);
-      font-size: clamp(2.5rem, 8vw, 5rem);
-      font-weight: 600;
-      color: #eef1fb;
-      line-height: 1;
-      margin-bottom: 16px;
-    }
-
-    .contact-sub {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      margin-bottom: 32px;
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.7;
-    }
-
-    .contact-email {
-      font-family: var(--ff-head);
-      font-size: clamp(1.1rem, 3vw, 1.6rem);
-      font-style: italic;
-      color: var(--gold-bright);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(201, 150, 58, 0.35);
-      padding-bottom: 2px;
-      transition: color 0.2s, border-color 0.2s;
-      display: inline-block;
-      margin-top: 8px;
-    }
-
-    .contact-email:hover {
-      color: #fff;
-      border-color: var(--gold-bright);
-    }
-
-    /* ── FOOTER ── */
-    .footer {
-      padding: 48px 0 40px;
-      border-top: 1px solid var(--divider);
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 36px;
-    }
-
-    .footer-logo {
-      font-family: var(--ff-head);
-      font-size: 1.1rem;
-      font-style: italic;
-      color: #eef1fb;
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    .footer-tagline {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-      max-width: 240px;
-    }
-
-    .footer-social {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .footer-social a {
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .footer-social a:hover { color: var(--text); }
-
-    .footer-nav {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .footer-nav a {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .footer-nav a:hover { color: var(--text); }
-
-    .footer-legal {
-      font-size: 0.72rem;
-      color: rgba(136, 152, 184, 0.4);
-      line-height: 1.7;
-    }
-
-    .footer-legal a {
-      color: rgba(136, 152, 184, 0.5);
-      text-decoration: none;
-    }
-
-    /* ── NOT SURE STRIP ── */
-    .strip {
-      padding: 48px 24px;
-      text-align: center;
-    }
-
-    .strip p {
-      font-family: var(--ff-head);
-      font-size: 1.1rem;
-      font-style: italic;
-      color: var(--text-muted);
-      margin-bottom: 16px;
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 639px) {
-      .nav { padding: 10px 16px; }
-      .nav-logo img { height: 68px; }
-      .nav-links { gap: 20px; }
-      .nav-links .nav-hide-mobile { display: none; }
-      .hero { padding: 110px 20px 8px !important; }
-      .hero-title { font-size: clamp(2rem, 9vw, 3rem); }
-      .section { padding: 60px 0; }
-      .container { padding: 0 20px; }
-      .container--wide { padding: 0 20px; }
-      .offerings-grid { gap: 20px; }
-      .card { padding: 28px 20px; }
-      .process-grid { gap: 20px; }
-      .process-item { padding: 28px 20px; }
-      .services-grid { gap: 20px; }
-      .service-card { padding: 32px 20px; }
-      .contact { padding: 60px 0; }
-      .footer { padding: 48px 0 40px; }
-    }
-
-    @media (min-width: 640px) {
-      .offerings-grid { grid-template-columns: 1fr 1fr; }
-      .services-grid  { grid-template-columns: 1fr 1fr; }
-      .process-grid   { grid-template-columns: 1fr; }
-      .footer-grid    { grid-template-columns: 1fr 1fr; }
-    }
-
-    @media (min-width: 768px) {
-      .about-grid { grid-template-columns: 1fr 1fr; }
-      .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
-    }
-
-    @media (min-width: 1024px) {
-      .offerings-grid { grid-template-columns: 1fr 1fr; }
-    }
+    .faq { padding: 0 0 88px; }
+    .faq-list { margin-top: 32px; }
   </style>
 </head>
 <body>
+  <!-- Extends the Hand-Processed Film world established at / (seed key f69801ae). No local identity decisions here. -->
 
   <!-- ══════════════════════════════
        NAV
        ══════════════════════════════ -->
   <nav class="nav" id="nav">
-    <a class="nav-logo" href="/home/">
-      <img src="/images/logo.webp" alt="Tito Silversax" width="132" height="132">
+    <a class="nav-logo" href="/">
+      <img src="/images/logo.webp" alt="Tito Silversax" width="40" height="40">
+      <span class="nav-logo-mark"><span class="nav-hide-mobile">7247 · E7 · 16MM</span><strong>Tito Silversax</strong></span>
     </a>
     <ul class="nav-links">
-      <li><a href="/home">Home</a></li>
+      <li><a href="/">Home</a></li>
       <li class="nav-hide-mobile"><a href="/compendium">The Compendium</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -979,124 +100,127 @@
   <!-- ══════════════════════════════
        HERO
        ══════════════════════════════ -->
-  <section class="hero" id="top" style="min-height: auto; padding: 160px 24px 24px;">
-    <div class="hero-bg"></div>
-    <div class="hero-inner">
-      <span class="hero-eyebrow">Tito Silversax &nbsp;·&nbsp; Offers</span>
-      <h1 class="hero-headline">
-        Choose Your<br><em>Starting Point.</em>
-      </h1>
-      <p class="hero-sub">
-        I built every tool here feeling-first, so your music sounds like you.
-      </p>
+  <section class="page-hero">
+    <div class="container container--wide">
+      <span class="eyebrow"><span class="frame-no">REEL B</span> · Offers</span>
+      <h1>Choose your<br>starting point.</h1>
+      <p class="section-lede">I built every tool here feeling-first, so your music sounds like you.</p>
     </div>
   </section>
 
   <!-- ══════════════════════════════
        OFFERINGS
        ══════════════════════════════ -->
-  <section class="offerings" id="offerings" style="padding-top: 24px;">
+  <section class="offerings" id="offerings">
     <div class="container container--wide">
       <div class="offerings-grid">
 
         <!-- Free Guide -->
-        <div class="offering-card">
-          <span class="card-badge card-badge--free">Free Guide</span>
-          <span class="card-type">Digital Download</span>
-          <h3 class="card-title">The Emotional Star Map</h3>
-          <div class="card-price" style="font-size:1.4rem; margin-top:8px;">Free</div>
-          <p class="card-price-note">Delivered to your inbox</p>
-          <p class="card-desc">
-            The original 6-page guide to mapping seven emotional territories onto
-            the musical modes. Includes the Quick-Start Process and The 4 Emotional
-            Bridges. No music background needed — just honesty about how you feel.
-          </p>
-          <span class="card-includes-label">What's Included</span>
-          <ul class="card-list">
-            <li>6-page digital guide</li>
-            <li>The 7 Emotional Palettes mapped to modes</li>
-            <li>The Quick-Start Process</li>
-            <li>The 4 Emotional Bridges</li>
-            <li>Journaling prompts for each mode</li>
-            <li>No music background required</li>
-          </ul>
-          <a class="btn-secondary" href="https://titosilversax.kit.com/freeguide" target="_blank" rel="noopener" style="display:inline-block; width:100%; text-align:center;">
-            Download Free Guide
-          </a>
+        <div class="frame-card">
+          <div class="frame-card__bar"><span>Frame 01</span><span class="tag">Free Guide</span></div>
+          <div class="frame-card__body">
+            <span class="card-type">Digital Download</span>
+            <h3 class="card-title">The Emotional Star Map</h3>
+            <div class="card-price-row"><span class="card-price">Free</span></div>
+            <p class="card-price-note">Delivered to your inbox</p>
+            <p class="card-desc">
+              The original 6-page guide to mapping seven emotional territories onto
+              the musical modes. Includes the Quick-Start Process and The 4 Emotional
+              Bridges. No music background needed — just honesty about how you feel.
+            </p>
+            <span class="card-includes-label">What's Included</span>
+            <ul class="card-list">
+              <li>6-page digital guide</li>
+              <li>The 7 Emotional Palettes mapped to modes</li>
+              <li>The Quick-Start Process</li>
+              <li>The 4 Emotional Bridges</li>
+              <li>Journaling prompts for each mode</li>
+              <li>No music background required</li>
+            </ul>
+            <a class="btn-secondary card-cta" href="https://titosilversax.kit.com/freeguide" target="_blank" rel="noopener">
+              Download Free Guide
+            </a>
+          </div>
         </div>
 
         <!-- Songwriter's Edition -->
-        <div class="offering-card offering-card--recommended">
-          <span class="card-badge card-badge--recommended">Recommended</span>
-          <span class="card-type">Emotional Processing System</span>
-          <h3 class="card-title">The Emotional Star Map: Songwriter's Edition</h3>
-          <div class="card-price">$27</div>
-          <p class="card-price-note">One-time purchase</p>
-          <p class="card-desc">
-            The full system for turning a heavy feeling into a finished song.
-            Everything you need to move from stuck to sonically honest.
-          </p>
-          <span class="card-includes-label">What's Included</span>
-          <ul class="card-list">
-            <li>The Processing Guide — structured emotional excavation</li>
-            <li>Interactive Notion Workspace (duplicatable)</li>
-            <li>Emotional Landscapes — map the color of your current state</li>
-            <li>Transition Frameworks — move through heavy emotions safely</li>
-            <li>5 Structured Song Feeling Journal Sessions</li>
-            <li>"Star Note" deep-dive for every palette</li>
-            <li>Printable PDF Workbook (22 pages)</li>
-            <li>Modal Listening Playlist &amp; Chord Charts</li>
-          </ul>
-          <a class="btn-primary" href="https://titosilversax.kit.com/products/the-emotional-star-map" data-commerce style="display:inline-block; width:100%; text-align:center;">
-            Get the Full System — $27
-          </a>
+        <div class="frame-card frame-card--lit">
+          <div class="frame-card__bar"><span>Frame 02</span><span class="tag">Recommended</span></div>
+          <div class="frame-card__body">
+            <span class="card-type">Emotional Processing System</span>
+            <h3 class="card-title">The Emotional Star Map: Songwriter's Edition</h3>
+            <div class="card-price-row"><span class="card-price">$27</span></div>
+            <p class="card-price-note">One-time purchase</p>
+            <p class="card-desc">
+              The full system for turning a heavy feeling into a finished song.
+              Everything you need to move from stuck to sonically honest.
+            </p>
+            <span class="card-includes-label">What's Included</span>
+            <ul class="card-list">
+              <li>The Processing Guide — structured emotional excavation</li>
+              <li>Interactive Notion Workspace (duplicatable)</li>
+              <li>Emotional Landscapes — map the color of your current state</li>
+              <li>Transition Frameworks — move through heavy emotions safely</li>
+              <li>5 Structured Song Feeling Journal Sessions</li>
+              <li>"Star Note" deep-dive for every palette</li>
+              <li>Printable PDF Workbook (22 pages)</li>
+              <li>Modal Listening Playlist &amp; Chord Charts</li>
+            </ul>
+            <a class="btn-primary card-cta" href="https://titosilversax.kit.com/products/the-emotional-star-map" data-commerce>
+              Get the Full System — $27
+            </a>
+          </div>
         </div>
 
         <!-- A Contemplative Music Practice in a Box -->
-        <div class="offering-card offering-card--practice">
-          <span class="card-badge card-badge--new">New</span>
-          <span class="card-type">Contemplative Practice System</span>
-          <h3 class="card-title">A Contemplative Music Practice in a Box</h3>
-          <div class="card-price">$97</div>
-          <p class="card-price-note">One-time purchase</p>
-          <p class="card-desc">
-            Ten modal journeys over living drones, held by a five-movement
-            ritual: Settle, Listen, Visualize, Play, Reflect. A practice,
-            the way meditation is a practice.
-          </p>
-          <span class="card-includes-label">What's Included</span>
-          <ul class="card-list">
-            <li>66-page practice guide — ten modal journeys</li>
-            <li>Ten 30-minute looping drone soundscapes</li>
-            <li>The five-movement session ritual</li>
-            <li>Transposition guide for B♭ &amp; E♭ instruments</li>
-            <li>Triad pair appendix for deeper harmony</li>
-          </ul>
-          <a class="convertkit-button" href="/practice">Explore the Practice — $97</a>
+        <div class="frame-card">
+          <div class="frame-card__bar"><span>Frame 03</span><span class="tag">New</span></div>
+          <div class="frame-card__body">
+            <span class="card-type">Contemplative Practice System</span>
+            <h3 class="card-title">A Contemplative Music Practice in a Box</h3>
+            <div class="card-price-row"><span class="card-price">$97</span></div>
+            <p class="card-price-note">One-time purchase</p>
+            <p class="card-desc">
+              Ten modal journeys over living drones, held by a five-movement
+              ritual: Settle, Listen, Visualize, Play, Reflect. A practice,
+              the way meditation is a practice.
+            </p>
+            <span class="card-includes-label">What's Included</span>
+            <ul class="card-list">
+              <li>66-page practice guide — ten modal journeys</li>
+              <li>Ten 30-minute looping drone soundscapes</li>
+              <li>The five-movement session ritual</li>
+              <li>Transposition guide for B♭ &amp; E♭ instruments</li>
+              <li>Triad pair appendix for deeper harmony</li>
+            </ul>
+            <a class="btn-secondary card-cta" href="/practice">Explore the Practice — $97</a>
+          </div>
         </div>
 
         <!-- The Saxophonist's Compendium -->
-        <div class="offering-card offering-card--companion">
-          <span class="card-badge card-badge--companion">For Saxophonists</span>
-          <span class="card-type">Digital Book</span>
-          <h3 class="card-title">The Saxophonist's Compendium</h3>
-          <div class="card-price">$27</div>
-          <p class="card-price-note">PDF &amp; EPUB &nbsp;·&nbsp; Instant download</p>
-          <p class="card-desc">
-            25,000 words on harmonic physics, microtonality, world tuning systems,
-            sacred geometry, Kabbalah, and Sufism — all through the lens of the saxophone.
-            You'll hear differently after this.
-          </p>
-          <span class="card-includes-label">What's Inside</span>
-          <ul class="card-list">
-            <li>The harmonic series</li>
-            <li>Microtonality</li>
-            <li>Arabic, Turkish, Persian &amp; West African tuning systems</li>
-            <li>Sacred geometry &amp; the Fibonacci sequence</li>
-            <li>Kabbalah &amp; Sufism on sound as spiritual practice</li>
-            <li>An integrated daily practice framework</li>
-          </ul>
-          <a class="convertkit-button" href="/compendium">Get the Compendium — $27</a>
+        <div class="frame-card">
+          <div class="frame-card__bar"><span>Frame 04</span><span class="tag">For Saxophonists</span></div>
+          <div class="frame-card__body">
+            <span class="card-type">Digital Book</span>
+            <h3 class="card-title">The Saxophonist's Compendium</h3>
+            <div class="card-price-row"><span class="card-price">$27</span></div>
+            <p class="card-price-note">PDF &amp; EPUB &nbsp;·&nbsp; Instant download</p>
+            <p class="card-desc">
+              25,000 words on harmonic physics, microtonality, world tuning systems,
+              sacred geometry, Kabbalah, and Sufism — all through the lens of the saxophone.
+              You'll hear differently after this.
+            </p>
+            <span class="card-includes-label">What's Inside</span>
+            <ul class="card-list">
+              <li>The harmonic series</li>
+              <li>Microtonality</li>
+              <li>Arabic, Turkish, Persian &amp; West African tuning systems</li>
+              <li>Sacred geometry &amp; the Fibonacci sequence</li>
+              <li>Kabbalah &amp; Sufism on sound as spiritual practice</li>
+              <li>An integrated daily practice framework</li>
+            </ul>
+            <a class="btn-secondary card-cta" href="/compendium">Get the Compendium — $27</a>
+          </div>
         </div>
 
       </div>
@@ -1109,9 +233,9 @@
        PROCESS
        ══════════════════════════════ -->
   <section class="process" id="process">
-    <div class="container">
-      <span class="section-label">The Journey</span>
-      <h2 class="section-heading">How We Work Together</h2>
+    <div class="container" style="padding-top: 64px;">
+      <span class="eyebrow"><span class="frame-no">FRAME 12</span> · The Journey</span>
+      <h2 class="section-heading">How we work<br>together</h2>
       <div class="process-grid">
         <div class="process-step">
           <span class="process-num">01</span>
@@ -1135,7 +259,7 @@
           </div>
         </div>
       </div>
-      <div style="text-align: center; margin-top: 40px;">
+      <div style="text-align: center; margin-top: 36px;">
         <a class="btn-primary" href="https://forms.office.com/Pages/ResponsePage.aspx?id=LH-uag0hrEumjyAyviWOUCzYVd5-MC9Gior0cb0pgk1UMTkyQjBTSTRGUEg4TjhIT0xMVDkzWlE0Vy4u" target="_blank" rel="noopener">Apply to Work Together</a>
       </div>
     </div>
@@ -1147,9 +271,9 @@
        FAQ
        ══════════════════════════════ -->
   <section class="faq" id="faq">
-    <div class="container">
-      <span class="section-label">Questions</span>
-      <h2 class="section-heading">Frequently Asked</h2>
+    <div class="container" style="padding-top: 64px;">
+      <span class="eyebrow"><span class="frame-no">FRAME 17</span> · Questions</span>
+      <h2 class="section-heading">Frequently<br>asked</h2>
       <div class="faq-list">
 
         <details class="faq-item">
@@ -1221,14 +345,14 @@
        CONTACT
        ══════════════════════════════ -->
   <section class="contact" id="contact">
-    <div class="container contact-inner">
-      <span class="section-label">Get in touch</span>
-      <h2 class="contact-heading">Let's talk.</h2>
-      <p class="contact-sub">
+    <div class="container">
+      <span class="eyebrow" style="justify-content:center;"><span class="frame-no">FRAME 21</span> · Get in touch</span>
+      <h2 class="contact-heading" style="font-family: var(--ff-display); font-size: clamp(2.6rem, 9vw, 5.2rem); color: var(--paper); text-transform: uppercase; margin-bottom: 14px;">Let's talk.</h2>
+      <p class="section-lede" style="margin: 0 auto 28px; text-align:center;">
         Whether you have questions, want to work together, or just want to say hi —
         I'd love to hear from you.
       </p>
-      <a class="contact-email" href="mailto:hello@titosilversax.com">hello@titosilversax.com</a>
+      <a class="contact-email" href="mailto:hello@titosilversax.com" style="font-family: var(--ff-mono); color: var(--light-leak); text-decoration:none; border-bottom: 1px solid rgba(255,138,51,0.4); padding-bottom: 3px;">hello@titosilversax.com</a>
     </div>
   </section>
 
@@ -1251,14 +375,14 @@
         </div>
         <div>
           <div class="footer-nav">
-            <a href="/home">Home</a>
+            <a href="/">Home</a>
             <a href="#contact">Contact</a>
-            <a href="/privacy">Privacy</a>
-            <a href="/terms">Terms</a>
+            <a href="/legal#privacy">Privacy</a>
+            <a href="/legal#terms">Terms</a>
           </div>
         </div>
       </div>
-      <div style="margin-top:36px; padding-top:24px; border-top:1px solid var(--divider);">
+      <div style="margin-top:36px; padding-top:24px; border-top:1px solid var(--rule);">
         <p class="footer-legal">
           <a href="mailto:hello@titosilversax.com">hello@titosilversax.com</a>
           &nbsp;·&nbsp; This is peer support, not therapy or medical treatment.

@@ -5,7 +5,9 @@
     { "source": "/home/:path*", "destination": "/", "permanent": true },
     { "source": "/offerings", "destination": "/offers", "permanent": true },
     { "source": "/titodreamingwithme", "destination": "/", "permanent": true },
-    { "source": "/titodreamingwithme/:path*", "destination": "/", "permanent": true }
+    { "source": "/titodreamingwithme/:path*", "destination": "/", "permanent": true },
+    { "source": "/privacy", "destination": "/legal#privacy", "permanent": true },
+    { "source": "/terms", "destination": "/legal#terms", "permanent": true }
   ],
   "headers": [
     {

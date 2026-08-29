@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -10,14 +10,16 @@
   <meta property="og:image" content="https://titosilversax.com/images/compendium-cover.jpg">
   <meta property="og:url" content="https://titosilversax.com/compendium">
   <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
 
-  <!-- Preload LCP image -->
   <link rel="preload" as="image" href="/images/compendium-cover.webp" type="image/webp">
 
-  <!-- Google Fonts -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/css/theme.css">
 
   <!-- Kit Commerce -->
   <script src="https://titosilversax.kit.com/commerce.js" async defer></script>
@@ -53,634 +55,100 @@
   </noscript>
 
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { opacity: 0; animation: pageEnter 1s ease-out 0.2s forwards; }
+    @keyframes pageEnter { to { opacity: 1; } }
 
-    :root {
-      --bg:          #06070f;
-      --surface:     #0b0e1c;
-      --surface-2:   #111829;
-      --gold:        #c9963a;
-      --gold-bright: #e8b94f;
-      --gold-glow:   rgba(201, 150, 58, 0.22);
-      --text:        #c8d2e6;
-      --text-muted:  #7a8bb0;
-      --divider:     rgba(139, 92, 246, 0.12);
-      --ff-head:     'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-      --ff-body:     'Inter', system-ui, -apple-system, sans-serif;
-    }
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
-    /* Vignette overlay */
-    .vignette {
-      position: fixed;
-      inset: 0;
-      z-index: 9998;
-      pointer-events: none;
-      background: radial-gradient(ellipse 70% 60% at 50% 50%, transparent 40%, rgba(6,7,15,0.55) 100%);
-    }
-
-    body {
-      background-color: var(--bg);
-      background-image: url('/images/background.webp?v=2');
-      background-size: cover;
-      background-position: center bottom;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      color: var(--text);
-      font-family: var(--ff-body);
-      font-size: 16px;
-      line-height: 1.85;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      opacity: 0;
-      animation: pageEnter 1.2s ease-out 0.3s forwards;
-    }
-
-    @keyframes pageEnter {
-      to { opacity: 1; }
-    }
-
-    /* Scroll reveal */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.9s ease-out, transform 0.9s ease-out;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .reveal-d1 { transition-delay: 0.12s; }
-    .reveal-d2 { transition-delay: 0.24s; }
-    .reveal-d3 { transition-delay: 0.36s; }
-    .reveal-d4 { transition-delay: 0.48s; }
-    .reveal-d5 { transition-delay: 0.60s; }
-
-    /* LAYOUT */
-    .container {
-      width: 100%;
-      max-width: 660px;
-      margin: 0 auto;
-      padding: 0 28px;
-    }
-
-    /* Whitespace separator */
-    .divider {
-      height: 0;
-      margin: 100px 0;
-    }
-
-    /* ── HERO ── */
-    .hero {
-      text-align: center;
-      padding: 100px 0 48px;
-    }
-
-    .cover-wrap {
-      display: inline-block;
-      position: relative;
-      margin-bottom: 52px;
-      animation: levitate 6s ease-in-out infinite;
-    }
-
-    @keyframes levitate {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
-    }
-
-    .cover-wrap::before {
-      content: '';
-      position: absolute;
-      inset: -24px;
-      border-radius: 6px;
-      background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.16) 0%, transparent 70%);
-      filter: blur(24px);
-      pointer-events: none;
-      animation: glowPulse 8s ease-in-out infinite;
-    }
-
-    @keyframes glowPulse {
-      0%, 100% { opacity: 0.6; transform: scale(1); }
-      50%      { opacity: 1;   transform: scale(1.1); }
-    }
-
-    .cover-img {
-      display: block;
-      width: 100%;
-      max-width: 300px;
-      height: auto;
-      border-radius: 4px;
-      box-shadow:
-        0 0 0 1px rgba(139, 92, 246, 0.10),
-        0 12px 40px rgba(0,0,0,0.5),
-        0 40px 100px rgba(0,0,0,0.25);
-      position: relative;
-    }
-
-    .hero-headline {
-      font-family: var(--ff-head);
-      font-size: clamp(2.2rem, 6.5vw, 3.6rem);
-      font-weight: 300;
-      line-height: 1.1;
-      letter-spacing: 0.02em;
-      margin-bottom: 24px;
-    }
-
-    .hero-sub {
-      font-family: var(--ff-head);
-      font-size: clamp(1.1rem, 3vw, 1.4rem);
-      font-style: italic;
-      font-weight: 300;
-      color: #a8b8d8;
-      max-width: 520px;
-      margin: 0 auto 44px;
-      line-height: 1.55;
-    }
-
-    /* ── CTA BUTTON ── */
-    .cta-wrap {
-      text-align: center;
-      margin: 8px 0;
-    }
-
-    .convertkit-button,
-    a.convertkit-button {
-      display: inline-block !important;
-      background: linear-gradient(135deg, #b8862e 0%, #e0ac48 50%, #b8862e 100%) !important;
-      background-size: 200% 100% !important;
-      color: #0b0a06 !important;
-      font-family: var(--ff-body) !important;
-      font-size: 1rem !important;
-      font-weight: 500 !important;
-      letter-spacing: 0.04em !important;
-      text-decoration: none !important;
-      padding: 16px 36px !important;
-      border-radius: 3px !important;
-      border: none !important;
-      cursor: pointer !important;
-      transition: background-position 0.4s ease, box-shadow 0.3s ease, transform 0.15s ease !important;
-      box-shadow: 0 0 28px var(--gold-glow), 0 4px 16px rgba(0,0,0,0.4) !important;
-      width: 100% !important;
-      max-width: 360px !important;
-      text-align: center !important;
-      animation: btnBreathe 4s ease-in-out infinite;
-    }
-
-    @keyframes btnBreathe {
-      0%, 100% { box-shadow: 0 0 24px var(--gold-glow), 0 4px 16px rgba(0,0,0,0.4); }
-      50%      { box-shadow: 0 0 40px rgba(201,150,58,0.35), 0 4px 16px rgba(0,0,0,0.4); }
-    }
-
-    .convertkit-button:hover,
-    a.convertkit-button:hover {
-      background-position: 100% 0 !important;
-      box-shadow: 0 0 44px var(--gold-glow), 0 6px 24px rgba(0,0,0,0.5) !important;
-      transform: translateY(-1px) !important;
-    }
-
-    .cta-note {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-top: 12px;
-      letter-spacing: 0.02em;
-    }
-
-    /* ── SECTIONS ── */
-    .section { padding: 12px 0; }
-
-    .section-label {
-      font-family: var(--ff-body);
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 24px;
-      display: block;
-      opacity: 0.85;
-    }
-
-    .section-heading {
-      font-family: var(--ff-head);
-      font-size: clamp(1.5rem, 4vw, 2.2rem);
-      font-weight: 300;
-      font-style: italic;
-      line-height: 1.25;
-      color: #eef1fb;
-      margin-bottom: 28px;
-      letter-spacing: 0.01em;
-      position: relative;
-      padding-left: 20px;
-    }
-    .section-heading::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 6px;
-      bottom: 6px;
-      width: 2px;
-      background: linear-gradient(180deg, transparent, var(--gold), transparent);
-      opacity: 0.4;
-    }
-
-    .section-body {
-      color: var(--text);
-      font-size: clamp(0.95rem, 2.5vw, 1.05rem);
-      line-height: 1.9;
-    }
-
-    .section-body p + p { margin-top: 22px; }
-
-    .section-body em {
-      font-style: italic;
-      color: #b0c0e0;
-    }
-
-    /* ── WHAT'S INSIDE ── */
-    .inside-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0;
-    }
-
-    .inside-item {
-      padding: 32px 0;
-      border-bottom: 1px solid rgba(139, 92, 246, 0.06);
-      display: grid;
-      grid-template-columns: 44px 1fr;
-      gap: 24px;
-      align-items: start;
-      transition: background 0.5s ease;
-      border-radius: 6px;
-      margin: 0 -12px;
-      padding-left: 12px;
-      padding-right: 12px;
-    }
-
-    .inside-item:hover {
-      background: rgba(139, 92, 246, 0.035);
-    }
-
-    .inside-item:last-child { border-bottom: none; }
-
-    .inside-numeral {
-      font-family: var(--ff-head);
-      font-size: 1.4rem;
-      font-weight: 300;
-      font-style: italic;
-      color: rgba(139, 92, 246, 0.35);
-      line-height: 1.3;
-      padding-top: 2px;
-      transition: color 0.5s ease;
-    }
-
-    .inside-item:hover .inside-numeral {
-      color: rgba(201, 150, 58, 0.65);
-    }
-
-    .inside-title {
-      font-family: var(--ff-head);
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #dde4f2;
-      margin-bottom: 8px;
-      line-height: 1.3;
-    }
-
-    .inside-desc {
-      font-size: 0.92rem;
-      color: var(--text-muted);
-      line-height: 1.8;
-    }
-
-    /* ── TABLE OF CONTENTS ── */
-    .toc-wrap { text-align: center; }
-
-    .toc-img {
-      display: inline-block;
-      width: 100%;
-      max-width: 520px;
-      height: auto;
-      border-radius: 4px;
-      border: 1px solid rgba(139, 92, 246, 0.10);
-      box-shadow: 0 8px 40px rgba(0,0,0,0.35), 0 0 0 1px rgba(139, 92, 246, 0.04);
-    }
-
-    .toc-caption {
-      margin-top: 16px;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      opacity: 0.6;
-    }
-
-    /* ── WHO IS THIS FOR ── */
-    .for-list {
-      list-style: none;
-      padding: 0;
-      margin: 24px 0 0;
-    }
-
-    .for-list li {
-      position: relative;
-      padding-left: 24px;
-      margin-bottom: 14px;
-      font-size: 0.97rem;
-      color: var(--text);
-      line-height: 1.75;
-    }
-
-    .for-list li::before {
-      content: '—';
-      position: absolute;
-      left: 0;
-      color: var(--gold);
-      font-weight: 300;
-      opacity: 0.5;
-    }
-
-    /* ── PRICE BLOCK ── */
-    .price-block {
-      background: linear-gradient(135deg, rgba(11,14,28,0.7) 0%, rgba(15,20,40,0.5) 100%);
-      border: 1px solid rgba(139, 92, 246, 0.10);
-      border-radius: 8px;
-      padding: 52px 36px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .price-block::before {
-      content: '';
-      position: absolute;
-      top: -60px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 240px;
-      height: 240px;
-      background: radial-gradient(circle, rgba(76, 29, 149, 0.12) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .price-product-name {
-      font-family: var(--ff-head);
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: #eef1fb;
-      margin-bottom: 4px;
-    }
-
-    .price-amount {
-      font-family: var(--ff-head);
-      font-size: clamp(2.8rem, 9vw, 4rem);
-      font-weight: 600;
-      line-height: 1;
-      color: var(--gold-bright);
-      margin: 20px 0 8px;
-    }
-
-    .price-details {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      margin-bottom: 36px;
-      line-height: 1.7;
-    }
-
-    /* ── FOOTER ── */
-    .site-back {
-      position: fixed;
-      top: 16px;
-      left: 20px;
-      z-index: 100;
-      text-decoration: none;
-      display: block;
-      opacity: 0.75;
-      transition: opacity 0.2s;
-    }
-
-    .site-back img { display: block; height: 120px; width: auto; }
+    .site-back { position: fixed; top: 16px; left: 20px; z-index: 100; text-decoration: none; display: flex; align-items: center; gap: 8px; opacity: 0.85; transition: opacity 0.2s; }
+    .site-back img { display: block; height: 32px; width: auto; filter: grayscale(1) contrast(1.1); }
+    .site-back span { font-family: var(--ff-mono); font-size: 0.68rem; letter-spacing: 0.08em; color: var(--base-gray); text-transform: uppercase; }
     .site-back:hover { opacity: 1; }
 
-    .footer {
-      padding: 48px 0 80px;
-      text-align: center;
-    }
+    .page-container { max-width: 660px; }
 
-    .footer-text {
-      font-size: 0.78rem;
-      color: rgba(136, 152, 184, 0.45);
-      line-height: 1.8;
-    }
-
-    .footer-text a {
-      color: var(--text-muted);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(136, 152, 184, 0.25);
-      transition: color 0.2s, border-color 0.2s;
-    }
-
-    .footer-text a:hover {
-      color: var(--text);
-      border-color: rgba(136, 152, 184, 0.5);
-    }
-
-    /* Mouse parallax */
-    .parallax {
-      transition: transform 0.3s ease-out;
-      will-change: transform;
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 599px) {
-      .hero { padding: 60px 0 32px; }
-      .cover-img { max-width: 220px; }
-      .cover-wrap { margin-bottom: 36px; }
-      .container { padding: 0 20px; }
-      .divider { margin: 56px 0; }
-      .price-block { padding: 36px 20px; }
-      .inside-item { gap: 16px; padding: 24px 0; }
-      .hero-sub { margin-bottom: 32px; }
-      .site-back { top: 12px; left: 16px; }
-      .site-back img { height: 96px; }
-    }
-
-    @media (min-width: 600px) {
-      .hero { padding: 120px 0 64px; }
-      .cover-img { max-width: 340px; }
-      .container { padding: 0 32px; }
-      .divider { margin: 120px 0; }
-      .inside-item { margin: 0 -16px; padding-left: 16px; padding-right: 16px; }
-    }
-
-    @media (min-width: 768px) {
-      .hero { padding: 140px 0 80px; }
-      .cover-img { max-width: 360px; }
-      .price-block { padding: 64px 56px; }
-      .divider { margin: 140px 0; }
-    }
-    /* ── TEXT SELECTION ── */
-    ::selection {
-      background: rgba(201, 150, 58, 0.25);
-      color: #f0f2f8;
-    }
-    ::-moz-selection {
-      background: rgba(201, 150, 58, 0.25);
-      color: #f0f2f8;
-    }
-
-    /* ── FAQ ── */
-    details.faq-item {
-      border-bottom: 1px solid rgba(139, 92, 246, 0.12);
-    }
-
-    details.faq-item:first-of-type {
-      border-top: 1px solid rgba(139, 92, 246, 0.12);
-    }
-
-    details.faq-item summary {
-      list-style: none;
-      cursor: pointer;
-      padding: 20px 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: var(--ff-head);
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #dde4f2;
-      gap: 16px;
-      transition: color 0.2s;
-    }
-
-    details.faq-item summary::-webkit-details-marker { display: none; }
-    details.faq-item summary::marker { display: none; }
-    details.faq-item summary:hover { color: #eef1fb; }
-
-    .faq-icon {
-      flex-shrink: 0;
-      font-family: var(--ff-body);
-      font-size: 1.2rem;
-      font-weight: 300;
-      color: var(--gold);
-      width: 20px;
-      text-align: center;
-      transition: transform 0.25s;
-    }
-
-    details[open].faq-item .faq-icon {
-      transform: rotate(45deg);
-    }
-
-    .faq-answer {
-      padding: 0 0 22px;
-      font-size: 0.93rem;
-      color: var(--text-muted);
-      line-height: 1.8;
-      max-width: 560px;
-    }
-
-    /* ── TESTIMONIAL ── */
-    .testimonial {
-      text-align: center;
-      max-width: 560px;
-      margin: 0 auto;
-    }
-
-    .testimonial-quote {
-      font-family: var(--ff-head);
-      font-size: clamp(1.3rem, 3.5vw, 1.8rem);
-      font-style: italic;
-      font-weight: 300;
-      line-height: 1.5;
-      color: #dde4f2;
-      position: relative;
-      padding: 0 8px;
-    }
-
-    .testimonial-quote::before {
-      content: '\201C';
-      display: block;
-      font-size: 3.2rem;
-      line-height: 1;
-      color: rgba(201, 150, 58, 0.55);
-      margin-bottom: 8px;
-    }
-
-    .testimonial-attr {
-      margin-top: 20px;
-      font-family: var(--ff-body);
-      font-size: 0.78rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-
-    /* ── GOLD LINE DRAW SEPARATOR ── */
-    .gold-line {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 80px 0;
-      height: 1px;
-      position: relative;
-    }
-    .gold-line::before {
+    .hero { text-align: center; padding: 110px 0 40px; }
+    .cover-wrap { display: inline-block; position: relative; margin-bottom: 40px; border: 1px solid var(--rule); }
+    .cover-wrap::after {
       content: '';
-      width: 0%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(201,150,58,0.3), transparent);
-      transition: width 1.2s ease-out;
+      position: absolute; inset: 0;
+      background: linear-gradient(105deg, rgba(255,138,51,0.28) 0%, transparent 30%);
+      mix-blend-mode: multiply;
+      pointer-events: none;
     }
-    .gold-line.visible::before {
-      width: 100%;
+    .cover-frame-tag {
+      position: absolute; top: 10px; right: 10px; z-index: 2;
+      font-family: var(--ff-mono); font-size: 0.62rem; color: var(--paper);
+      background: rgba(14,15,16,0.6); border: 1px solid rgba(236,232,222,0.25);
+      padding: 3px 7px; border-radius: 2px; letter-spacing: 0.06em;
     }
-    .gold-line::after {
-      content: '';
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: rgba(201,150,58,0.5);
-      opacity: 0;
-      transition: opacity 0.6s ease 0.8s;
-    }
-    .gold-line.visible::after {
-      opacity: 1;
-    }
+    .cover-img { display: block; width: 100%; max-width: 280px; height: auto; filter: grayscale(0.25) contrast(1.08); }
 
-    /* ── HERO HEADLINE SHIMMER ── */
-    .hero-headline {
-      background: linear-gradient(90deg, #f0f2f8 0%, #e8d5a8 25%, #f0f2f8 50%, #c8b8e8 75%, #f0f2f8 100%);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: shimmer 8s linear infinite;
-    }
-    @keyframes shimmer {
-      to { background-position: 200% center; }
-    }
+    .hero-headline { font-size: clamp(2.4rem, 8vw, 4rem); margin-bottom: 20px; }
+    .hero-sub { font-family: var(--ff-body); font-size: clamp(1rem, 2.6vw, 1.2rem); color: var(--emulsion); max-width: 500px; margin: 0 auto 36px; line-height: 1.7; }
+
+    .cta-wrap { text-align: center; margin: 8px 0; }
+    .cta-note { font-family: var(--ff-mono); font-size: 0.72rem; color: var(--base-gray); margin-top: 14px; letter-spacing: 0.03em; }
+    .cta-alt { margin-top: 14px; font-size: 0.85rem; }
+    .cta-alt a { color: var(--base-gray); text-decoration: none; border-bottom: 1px solid var(--rule-strong); padding-bottom: 1px; }
+    .cta-alt a:hover { color: var(--light-leak); border-color: var(--light-leak); }
+
+    .section { padding: 56px 0; }
+    .section-heading { font-size: clamp(1.5rem, 4vw, 2.1rem); text-transform: none; }
+    .section-body { color: var(--emulsion); font-size: clamp(0.96rem, 2.3vw, 1.03rem); line-height: 1.9; }
+    .section-body p + p { margin-top: 20px; }
+    .section-body em { color: var(--sepia); font-style: italic; }
+
+    .for-list { list-style: none; margin-top: 22px; }
+    .for-list li { position: relative; padding-left: 24px; margin-bottom: 14px; font-size: 0.98rem; color: var(--emulsion); line-height: 1.75; }
+    .for-list li::before { content: '—'; position: absolute; left: 0; color: var(--light-leak); }
+
+    .inside-grid { margin-top: 8px; }
+    .inside-item { padding: 26px 0; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 48px 1fr; gap: 20px; align-items: start; }
+    .inside-item:first-child { border-top: 1px solid var(--rule); }
+    .inside-numeral { font-family: var(--ff-display); font-size: 1.5rem; color: var(--light-leak); line-height: 1.2; }
+    .inside-title { font-family: var(--ff-body); font-weight: 700; font-size: 1.1rem; color: var(--paper); margin-bottom: 6px; }
+    .inside-desc { font-size: 0.92rem; color: var(--base-gray); line-height: 1.8; }
+
+    .toc-wrap { text-align: center; position: relative; }
+    .toc-img-frame { position: relative; display: inline-block; border: 1px solid var(--rule); }
+    .toc-img { display: block; width: 100%; max-width: 520px; height: auto; filter: grayscale(0.2) contrast(1.05); }
+    .toc-caption { margin-top: 14px; font-family: var(--ff-mono); font-size: 0.68rem; color: var(--base-gray); letter-spacing: 0.08em; text-transform: uppercase; }
+
+    .testimonial { text-align: center; max-width: 560px; margin: 0 auto; }
+    .testimonial-quote { font-family: var(--ff-body); font-weight: 500; font-style: italic; font-size: clamp(1.15rem, 3.2vw, 1.5rem); line-height: 1.55; color: var(--paper); position: relative; }
+    .testimonial-quote::before { content: '\201C'; display: block; font-family: var(--ff-display); font-size: 2.8rem; line-height: 1; color: var(--light-leak); margin-bottom: 8px; }
+    .testimonial-attr { margin-top: 18px; font-family: var(--ff-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--base-gray); }
+
+    .price-block { text-align: center; padding-bottom: 0; }
+    .price-product-name { font-family: var(--ff-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--base-gray); margin-bottom: 6px; }
+    .price-amount { font-family: var(--ff-display); font-size: clamp(3rem, 9vw, 4.4rem); color: var(--light-leak); line-height: 1; margin: 12px 0 10px; }
+    .price-details { font-family: var(--ff-mono); font-size: 0.78rem; color: var(--base-gray); margin-bottom: 28px; line-height: 1.8; }
+
+    .footer { padding: 56px 0 80px; text-align: center; }
+    .footer-invite { margin: 0 auto 28px; max-width: 480px; font-size: 0.92rem; color: var(--emulsion); line-height: 1.8; }
+    .footer-invite a { color: var(--light-leak); text-decoration: none; border-bottom: 1px solid rgba(255,138,51,0.35); padding-bottom: 2px; }
+    .footer-text { font-family: var(--ff-mono); font-size: 0.74rem; color: var(--base-gray); line-height: 1.9; }
+    .footer-text a { color: var(--base-gray); text-decoration: none; }
+    .footer-text a:hover { color: var(--light-leak); }
   </style>
 </head>
 <body>
-
-  <!-- Vignette -->
-  <div class="vignette"></div>
+  <!-- Extends the Hand-Processed Film world established at / (seed key f69801ae). No local identity decisions here. -->
 
   <a class="site-back" href="/">
-    <img src="/images/logo.webp" alt="Tito Silversax" width="120" height="120">
+    <img src="/images/logo.webp" alt="Tito Silversax" width="32" height="32">
+    <span>Tito Silversax</span>
   </a>
 
   <!-- ═══════════════════════════════════════════
        HERO
        ═══════════════════════════════════════════ -->
   <section class="hero">
-    <div class="container">
-      <div class="cover-wrap parallax" data-speed="0.04">
+    <div class="container page-container">
+      <div class="cover-wrap">
+        <span class="cover-frame-tag">7A</span>
         <picture>
           <source srcset="/images/compendium-cover.webp" type="image/webp">
           <img
@@ -694,31 +162,31 @@
         </picture>
       </div>
 
-      <h1 class="hero-headline parallax" data-speed="0.02">The Saxophone<br>is a Portal.</h1>
+      <h1 class="hero-headline">The Saxophone<br>is a Portal.</h1>
 
-      <p class="hero-sub parallax" data-speed="0.01">
+      <p class="hero-sub">
         It opens in the spaces between the keys. 25,000 words on the physics,
         world tunings, and sacred traditions hiding inside your horn.
       </p>
 
       <div class="cta-wrap">
-        <a class="convertkit-button" href="https://titosilversax.kit.com/products/thesaxophonistscompendium" data-commerce>Enter the Portal — $27</a>
+        <a class="btn-primary" href="https://titosilversax.kit.com/products/thesaxophonistscompendium" data-commerce>Enter the Portal — $27</a>
         <p class="cta-note">PDF &amp; EPUB &nbsp;·&nbsp; Instant download &nbsp;·&nbsp; No DRM</p>
-        <p style="margin-top: 16px; font-size: 0.82rem;">
-          <a href="https://titosilversax.kit.com/sacredlistening" target="_blank" rel="noopener" style="color: var(--text-muted); text-decoration: none; border-bottom: 1px solid rgba(136,152,184,0.25); padding-bottom: 1px; transition: color 0.2s, border-color 0.2s;">Not ready? Get the free Sacred Listening guide →</a>
+        <p class="cta-alt">
+          <a href="https://titosilversax.kit.com/sacredlistening" target="_blank" rel="noopener">Not ready? Get the free Sacred Listening guide →</a>
         </p>
       </div>
     </div>
   </section>
 
-  <div class="gold-line"></div>
+  <div class="divider"></div>
 
   <!-- ═══════════════════════════════════════════
        THE PLATEAU
        ═══════════════════════════════════════════ -->
   <section class="section reveal">
-    <div class="container">
-      <span class="section-label">The plateau</span>
+    <div class="container page-container">
+      <span class="eyebrow"><span class="frame-no">FRAME 02</span> · The plateau</span>
       <h2 class="section-heading">You can play everything they gave you. So why does something still feel missing?</h2>
       <div class="section-body">
         <p>
@@ -736,13 +204,13 @@
     </div>
   </section>
 
-  <div class="gold-line"></div>
+  <div class="divider"></div>
 
   <!-- ═══════════════════════════════════════════
        INTRO
        ═══════════════════════════════════════════ -->
   <section class="section reveal">
-    <div class="container">
+    <div class="container page-container">
       <div class="section-body">
         <p>I'm Tito Silversax, saxophonist based in Cleveland, Ohio.</p>
         <p>
@@ -755,114 +223,109 @@
     </div>
   </section>
 
-  <div class="gold-line"></div>
+  <div class="divider"></div>
 
   <!-- ═══════════════════════════════════════════
        WHO IS THIS FOR
        ═══════════════════════════════════════════ -->
   <section class="section reveal">
-    <div class="container">
-      <span class="section-label">Who this is for</span>
+    <div class="container page-container">
+      <span class="eyebrow"><span class="frame-no">FRAME 03</span> · Who this is for</span>
       <h2 class="section-heading">You, if any of this sounds familiar.</h2>
       <ul class="for-list">
-        <li>You’ve outgrown the lesson books, but you don’t know where to go next.</li>
-        <li>You hear something in the music that you can’t name yet. You want to name it.</li>
+        <li>You've outgrown the lesson books, but you don't know where to go next.</li>
+        <li>You hear something in the music that you can't name yet. You want to name it.</li>
         <li>You suspect the saxophone is capable of more than twelve-tone temperament allows.</li>
-        <li>You practice daily, but you’re hungry for a deeper <em>why</em> behind every note.</li>
+        <li>You practice daily, but you're hungry for a deeper <em>why</em> behind every note.</li>
       </ul>
     </div>
   </section>
 
-  <div class="gold-line"></div>
+  <div class="divider"></div>
 
   <!-- ═══════════════════════════════════════════
        WHAT'S INSIDE
        ═══════════════════════════════════════════ -->
   <section class="section reveal">
-    <div class="container">
-      <span class="section-label">What's inside</span>
+    <div class="container page-container">
+      <span class="eyebrow"><span class="frame-no">FRAME 04</span> · What's inside</span>
       <h2 class="section-heading">Six sections that build one practice.</h2>
 
       <div class="inside-grid">
-
-        <div class="inside-item reveal reveal-d1">
+        <div class="inside-item">
           <span class="inside-numeral">I</span>
           <div>
             <h3 class="inside-title">The Harmonic Series</h3>
             <p class="inside-desc">Your horn is already playing everything. You can't hear it yet.</p>
           </div>
         </div>
-
-        <div class="inside-item reveal reveal-d2">
+        <div class="inside-item">
           <span class="inside-numeral">II</span>
           <div>
             <h3 class="inside-title">Microtonality</h3>
             <p class="inside-desc">The notes between the notes: a prismatic palette most players never touch.</p>
           </div>
         </div>
-
-        <div class="inside-item reveal reveal-d3">
+        <div class="inside-item">
           <span class="inside-numeral">III</span>
           <div>
             <h3 class="inside-title">World Tuning Systems</h3>
             <p class="inside-desc">Arabic, Turkish, Persian, West African. Each follows the harmonic series further than equal temperament allows.</p>
           </div>
         </div>
-
-        <div class="inside-item reveal reveal-d4">
+        <div class="inside-item">
           <span class="inside-numeral">IV</span>
           <div>
             <h3 class="inside-title">Sacred Geometry</h3>
             <p class="inside-desc">The Fibonacci sequence and the Golden Ratio run through your horn's proportions, your overtones, your phrasing.</p>
           </div>
         </div>
-
-        <div class="inside-item reveal reveal-d5">
+        <div class="inside-item">
           <span class="inside-numeral">V</span>
           <div>
             <h3 class="inside-title">Kabbalah &amp; Sufism</h3>
             <p class="inside-desc">Two traditions built entire philosophies around sound. Their insights map straight onto your practice.</p>
           </div>
         </div>
-
-        <div class="inside-item reveal reveal-d1">
+        <div class="inside-item">
           <span class="inside-numeral">VI</span>
           <div>
             <h3 class="inside-title">An Integrated Practice</h3>
             <p class="inside-desc">Long tones as meditation. Intonation as prayer. Playing as a portal.</p>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <div class="gold-line"></div>
+  <div class="divider"></div>
 
   <!-- ═══════════════════════════════════════════
        TABLE OF CONTENTS
        ═══════════════════════════════════════════ -->
   <section class="section reveal">
-    <div class="container">
-      <span class="section-label">A look inside</span>
+    <div class="container page-container">
+      <span class="eyebrow" style="justify-content:center;"><span class="frame-no">FRAME 05</span> · A look inside</span>
       <div class="toc-wrap">
-        <picture>
-          <source srcset="/images/TOC.webp" type="image/webp">
-          <img class="toc-img" src="/images/TOC.jpg" alt="Table of Contents — The Saxophonist's Compendium" width="560" loading="lazy">
-        </picture>
+        <div class="toc-img-frame">
+          <picture>
+            <source srcset="/images/TOC.webp" type="image/webp">
+            <img class="toc-img" src="/images/TOC.jpg" alt="Table of Contents — The Saxophonist's Compendium" width="560" loading="lazy">
+          </picture>
+        </div>
         <p class="toc-caption">Table of Contents</p>
       </div>
     </div>
   </section>
 
-  <div class="gold-line"></div>
+  <div class="divider"></div>
 
   <!-- ═══════════════════════════════════════════
        FAQ
        ═══════════════════════════════════════════ -->
   <section class="section reveal">
-    <div class="container">
-      <span class="section-label">Questions</span>
+    <div class="container page-container">
+      <span class="eyebrow"><span class="frame-no">FRAME 06</span> · Questions</span>
       <h2 class="section-heading">Before you ask.</h2>
 
       <details class="faq-item">
@@ -905,13 +368,13 @@
     </div>
   </section>
 
-  <div class="gold-line"></div>
+  <div class="divider"></div>
 
   <!-- ═══════════════════════════════════════════
        TESTIMONIAL
        ═══════════════════════════════════════════ -->
   <section class="section reveal">
-    <div class="container">
+    <div class="container page-container">
       <figure class="testimonial">
         <blockquote class="testimonial-quote">
           Went into a different world of sound. You have opened my mind up,
@@ -922,26 +385,29 @@
     </div>
   </section>
 
-  <div class="gold-line"></div>
+  <div class="divider"></div>
 
   <!-- ═══════════════════════════════════════════
        PRICE + CTA
        ═══════════════════════════════════════════ -->
   <section class="section reveal">
-    <div class="container">
-      <div class="price-block">
-        <p class="price-product-name">The Saxophonist's Compendium</p>
-        <div class="price-amount">$27</div>
-        <p class="price-details">
-          PDF &amp; EPUB &nbsp;·&nbsp; Instant digital download<br>
-          No subscription &nbsp;·&nbsp; No DRM &nbsp;·&nbsp; Yours to keep
-        </p>
-        <div class="cta-wrap">
-          <a class="convertkit-button" href="https://titosilversax.kit.com/products/thesaxophonistscompendium" data-commerce>Enter the Portal — $27</a>
+    <div class="container page-container">
+      <div class="frame-card frame-card--lit price-block">
+        <div class="frame-card__bar"><span>Frame 07</span><span class="tag">Checkout</span></div>
+        <div class="frame-card__body">
+          <p class="price-product-name">The Saxophonist's Compendium</p>
+          <div class="price-amount">$27</div>
+          <p class="price-details">
+            PDF &amp; EPUB &nbsp;·&nbsp; Instant digital download<br>
+            No subscription &nbsp;·&nbsp; No DRM &nbsp;·&nbsp; Yours to keep
+          </p>
+          <div class="cta-wrap">
+            <a class="btn-primary" href="https://titosilversax.kit.com/products/thesaxophonistscompendium" data-commerce>Enter the Portal — $27</a>
+          </div>
+          <p class="cta-alt" style="text-align:center;">
+            <a href="https://titosilversax.kit.com/sacredlistening" target="_blank" rel="noopener">Not ready? Get the free Sacred Listening guide →</a>
+          </p>
         </div>
-        <p style="margin-top: 16px; font-size: 0.82rem; text-align: center;">
-          <a href="https://titosilversax.kit.com/sacredlistening" target="_blank" rel="noopener" style="color: var(--text-muted); text-decoration: none; border-bottom: 1px solid rgba(136,152,184,0.25); padding-bottom: 1px; transition: color 0.2s, border-color 0.2s;">Not ready? Get the free Sacred Listening guide →</a>
-        </p>
       </div>
     </div>
   </section>
@@ -950,22 +416,22 @@
        FOOTER
        ═══════════════════════════════════════════ -->
   <footer class="footer reveal">
-    <div class="container">
-      <p style="margin: 0 auto 28px; max-width: 480px; font-size: 0.92rem; color: var(--text-muted); line-height: 1.8;">
-        Join a small circle of musicians diving deeper into sound, practice, and presence. It&rsquo;s free.<br>
-        <a href="https://www.skool.com/meditative-musicians-6593/about" target="_blank" rel="noopener" style="color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(201,150,58,0.35); padding-bottom: 2px; transition: color 0.2s, border-color 0.2s;">Join the Meditative Musicians community on Skool →</a>
+    <div class="container page-container">
+      <p class="footer-invite">
+        Join a small circle of musicians diving deeper into sound, practice, and presence. It's free.<br>
+        <a href="https://www.skool.com/meditative-musicians-6593/about" target="_blank" rel="noopener">Join the Meditative Musicians community on Skool →</a>
       </p>
       <p class="footer-text">
         Secure checkout via Kit &nbsp;·&nbsp;
         Questions? <a href="mailto:hello@titosilversax.com">hello@titosilversax.com</a><br>
-        <a href="/terms">Terms of Use</a> &nbsp;·&nbsp; <a href="/privacy">Privacy Policy</a> &nbsp;·&nbsp;
+        <a href="/legal#terms">Terms of Use</a> &nbsp;·&nbsp; <a href="/legal#privacy">Privacy Policy</a> &nbsp;·&nbsp;
         <a href="https://www.skool.com/meditative-musicians-6593/about" target="_blank" rel="noopener">Community</a><br>
         &copy; 2026 Alberto Martir / Tito Silversax. All rights reserved.
       </p>
     </div>
   </footer>
 
-  <!-- Scroll reveal + gold line observer -->
+  <!-- Scroll reveal -->
   <script>
     (function() {
       var observer = new IntersectionObserver(function(entries) {
@@ -977,27 +443,8 @@
         });
       }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-      document.querySelectorAll('.reveal, .gold-line').forEach(function(el) {
+      document.querySelectorAll('.reveal').forEach(function(el) {
         observer.observe(el);
-      });
-    })();
-  </script>
-
-  <!-- Mouse parallax -->
-  <script>
-    (function() {
-      var parallaxEls = document.querySelectorAll('.parallax');
-      if (!parallaxEls.length) return;
-      var centerX = window.innerWidth / 2;
-      var centerY = window.innerHeight / 2;
-
-      document.addEventListener('mousemove', function(e) {
-        var dx = (e.clientX - centerX) / centerX;
-        var dy = (e.clientY - centerY) / centerY;
-        parallaxEls.forEach(function(el) {
-          var speed = parseFloat(el.getAttribute('data-speed')) || 0.02;
-          el.style.transform = 'translate(' + (dx * speed * 30) + 'px, ' + (dy * speed * 30) + 'px)';
-        });
       });
     })();
   </script>
