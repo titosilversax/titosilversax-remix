@@ -60,6 +60,16 @@ body {
   position: relative;
 }
 
+/* The city sits right-of-center in the source image (1376x768). On a
+   narrow portrait viewport, background-size:cover scales against the
+   *height* and centers horizontally, which crops the frame down to
+   roughly the image's middle third — mostly empty sky, city barely
+   visible. Shift the focal point right so the towers are actually
+   what's on screen, not what got cropped out. */
+@media (max-width: 639px) {
+  body { background-position: 80% bottom; }
+}
+
 /* Starfield — small fixed points of light behind all content. */
 body::before {
   content: '';
@@ -103,10 +113,10 @@ body::after {
 a { color: inherit; }
 img { max-width: 100%; display: block; }
 
-.container { 
-  width: 100%; 
-  max-width: 720px; 
-  margin: 0 auto; 
+.container {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
   padding: 40px 32px;
   background: rgba(10, 10, 24, 0.85);
   border-radius: 16px;
@@ -117,7 +127,7 @@ img { max-width: 100%; display: block; }
 }
 .container--wide{ max-width: 1040px; }
 @media (max-width: 639px) {
-  .container { padding: 24px 20px; border-radius: 12px; }
+  .container { padding: 28px 20px; border-radius: 12px; }
 }
 
 ::selection { background: var(--coral); color: var(--leader); }
@@ -385,5 +395,4 @@ details[open].faq-item .faq-icon { transform: rotate(45deg); }
   .nav { padding: 12px 16px; }
   .nav-links { gap: 16px; }
   .nav-hide-mobile { display: none; }
-  .container, .container--wide { padding: 0 20px; }
 }
