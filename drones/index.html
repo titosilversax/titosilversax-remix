@@ -208,5 +208,17 @@
     </div>
   </footer>
 
+  <script>
+    // Only one drone plays at a time — starting one pauses the rest.
+    const droneAudios = Array.from(document.querySelectorAll('.track-audio'));
+    droneAudios.forEach((audio) => {
+      audio.addEventListener('play', () => {
+        droneAudios.forEach((other) => {
+          if (other !== audio) other.pause();
+        });
+      });
+    });
+  </script>
+
 </body>
 </html>
