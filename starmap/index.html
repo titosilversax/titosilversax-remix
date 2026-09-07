@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Emotional Star Map: Songwriter's Edition — Tito Silversax</title>
+  <meta name="description" content="A structured emotional excavation and song journaling system mapping the 7 musical modes to human feeling. By Tito Silversax (Alberto Martir). $27.">
+  <meta property="og:title" content="The Emotional Star Map: Songwriter's Edition — Tito Silversax">
+  <meta property="og:description" content="Turn heavy feelings into finished songs. The full system for moving from stuck to sonically honest. $27.">
+  <meta property="og:image" content="https://titosilversax.com/images/background.png">
+  <meta property="og:url" content="https://titosilversax.com/starmap">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Italianno&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/css/theme.css">
+
+  <!-- Kit Commerce -->
+  <script src="https://titosilversax.kit.com/commerce.js" async defer></script>
+
+  <!-- Vercel Analytics -->
+  <script defer src="/_vercel/insights/script.js"></script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SF1Y8CMTMR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SF1Y8CMTMR');
+  </script>
+
+  <!-- Meta Pixel -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window,document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '830210888742452');
+  fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=830210888742452&ev=PageView&noscript=1"/>
+  </noscript>
+
+  <style>
+    body { opacity: 0; animation: pageEnter 1s ease-out 0.2s forwards; }
+    @keyframes pageEnter { to { opacity: 1; } }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    .site-back { position: fixed; top: 16px; left: 20px; z-index: 100; text-decoration: none; display: flex; align-items: center; gap: 8px; opacity: 0.85; transition: opacity 0.2s; }
+    .site-back img { display: block; height: 32px; width: auto; filter: grayscale(1) contrast(1.1); }
+    .site-back span { font-family: var(--ff-mono); font-size: 0.68rem; letter-spacing: 0.08em; color: var(--base-gray); text-transform: uppercase; }
+    .site-back:hover { opacity: 1; }
+
+    .page-container { max-width: 660px; }
+
+    .hero { text-align: center; padding: 130px 0 48px; }
+    .hero-headline { font-size: clamp(3.2rem, 9vw, 5rem); line-height: 1.25; margin-bottom: 20px; }
+    .hero-sub { font-family: var(--ff-body); font-size: clamp(1rem, 2.6vw, 1.2rem); color: var(--emulsion); max-width: 520px; margin: 0 auto 36px; line-height: 1.7; }
+
+    .cta-wrap { text-align: center; margin: 8px 0; }
+    .cta-note { font-family: var(--ff-mono); font-size: 0.72rem; color: var(--base-gray); margin-top: 14px; letter-spacing: 0.03em; }
+    .cta-alt { margin-top: 14px; font-size: 0.85rem; }
+    .cta-alt a { color: var(--base-gray); text-decoration: none; border-bottom: 1px solid var(--rule-strong); padding-bottom: 1px; }
+    .cta-alt a:hover { color: var(--violet); border-color: var(--violet); }
+
+    .section { padding: 56px 0; }
+    .section-heading { font-size: clamp(1.5rem, 4vw, 2.1rem); text-transform: none; }
+    .section-body { color: var(--emulsion); font-size: clamp(0.96rem, 2.3vw, 1.03rem); line-height: 1.9; }
+    .section-body p + p { margin-top: 20px; }
+    .section-body em { color: var(--violet); font-style: italic; }
+
+    .for-list { list-style: none; margin-top: 22px; }
+    .for-list li { position: relative; padding-left: 24px; margin-bottom: 14px; font-size: 0.98rem; color: var(--emulsion); line-height: 1.75; }
+    .for-list li::before { content: '—'; position: absolute; left: 0; color: var(--violet); }
+
+    .inside-grid { margin-top: 8px; }
+    .inside-item { padding: 26px 0; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 48px 1fr; gap: 20px; align-items: start; }
+    .inside-item:first-child { border-top: 1px solid var(--rule); }
+    .inside-numeral { font-family: var(--ff-display); font-size: 1.5rem; color: var(--violet); line-height: 1.2; }
+    .inside-title { font-family: var(--ff-script); font-weight: 400; font-size: 2rem; line-height: 1.3; color: var(--paper); margin-bottom: 6px; }
+    .inside-desc { font-size: 0.92rem; color: var(--base-gray); line-height: 1.8; }
+
+    .preview-gallery { margin-top: 28px; display: flex; flex-direction: column; gap: 24px; }
+    .preview-card { border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; background: var(--leader-2); }
+    .preview-card img { width: 100%; height: auto; display: block; }
+    .preview-caption { font-family: var(--ff-mono); font-size: 0.72rem; color: var(--base-gray); padding: 10px 14px; background: var(--leader-3); border-top: 1px solid var(--rule); }
+
+    .price-block { text-align: center; padding-bottom: 0; }
+    .price-product-name { font-family: var(--ff-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--base-gray); margin-bottom: 6px; }
+    .price-amount { font-family: var(--ff-display); font-size: clamp(3rem, 9vw, 4.4rem); color: var(--coral); line-height: 1; margin: 12px 0 10px; }
+    .price-details { font-family: var(--ff-mono); font-size: 0.78rem; color: var(--base-gray); margin-bottom: 28px; line-height: 1.8; }
+
+    .footer { padding: 56px 0 80px; text-align: center; }
+    .footer-text { font-family: var(--ff-mono); font-size: 0.74rem; color: var(--base-gray); line-height: 1.9; }
+    .footer-text a { color: var(--base-gray); text-decoration: none; }
+    .footer-text a:hover { color: var(--violet); }
+  </style>
+</head>
+<body>
+
+  <a class="site-back" href="/">
+    <img src="/images/logo.webp" alt="Tito Silversax" width="32" height="32">
+    <span>Tito Silversax</span>
+  </a>
+
+  <!-- ═══════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════ -->
+  <section class="hero">
+    <div class="container page-container">
+      <span class="eyebrow" style="justify-content:center;"><span class="frame-no">STAR 01</span> · For songwriters &amp; feeling-first musicians</span>
+
+      <h1 class="hero-headline">Turn heavy feelings into finished songs.</h1>
+
+      <p class="hero-sub">
+        The full emotional excavation and song journaling system. Map your internal
+        landscape directly onto the musical modes—without getting trapped in theory.
+      </p>
+
+      <div class="cta-wrap">
+        <a class="btn-primary" href="https://titosilversax.kit.com/products/the-emotional-star-map" data-commerce>Get the Full System — $27</a>
+        <p class="cta-note">Interactive Notion Workspace + 22-page Workbook + Audio Playlists &nbsp;·&nbsp; Instant digital download</p>
+        <p class="cta-alt">
+          <a href="https://titosilversax.kit.com/freeguide" target="_blank" rel="noopener">Want to start smaller? Get the free 6-page guide →</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════
+       THE IMPASSE
+       ═══════════════════════════════════════════ -->
+  <section class="section reveal">
+    <div class="container page-container">
+      <span class="eyebrow"><span class="frame-no">STAR 02</span> · The impasse</span>
+      <h2 class="section-heading">When words are too small for what you feel.</h2>
+      <div class="section-body">
+        <p>
+          You sit down with your instrument or opening a blank page with something heavy
+          in your chest. You want to make music out of it. But ten minutes in, you're either
+          reaching for the same three predictable chords or trying to analyze your way
+          through the feeling.
+        </p>
+        <p>
+          Major feels too neat and naive. Minor feels like an oversimplified cliché.
+          What you're feeling is complex: grief with a thread of gratitude, anger wrapped
+          in exhaustion, or a quiet nostalgia you can't name. Conventional music theory
+          treats modes like finger exercises; it has nothing to say about your nervous system.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════
+       THE MECHANISM
+       ═══════════════════════════════════════════ -->
+  <section class="section reveal">
+    <div class="container page-container">
+      <span class="eyebrow"><span class="frame-no">STAR 03</span> · The mechanism</span>
+      <h2 class="section-heading">Map the feeling directly to the mode.</h2>
+      <div class="section-body">
+        <p>
+          The musical modes aren't intellectual formulas—they are <em>emotional palettes</em>.
+          Ancient tunings recognized that each mode vibrates in a specific psychological territory:
+        </p>
+        <p>
+          <strong>Indigo Dusk (Dorian)</strong> holds bittersweet hope and noble sadness. <strong>Crimson Smoke (Phrygian)</strong> carries
+          raw passion, urgency, and flamenco fire. <strong>Golden Aurora (Lydian)</strong> lifts into dreamlike awe and weightless wonder, while
+          <strong>Emerald Road (Mixolydian)</strong> radiates open-road confidence and golden-hour warmth.
+        </p>
+        <p>
+          <em>The Emotional Star Map</em> skips the academic hurdles. It gives you a direct,
+          repeatable process to locate where your feeling sits in the body, match it to its sonic
+          mode, and start writing from truth rather than technique.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════
+       WHAT'S INSIDE
+       ═══════════════════════════════════════════ -->
+  <section class="section reveal">
+    <div class="container page-container">
+      <span class="eyebrow"><span class="frame-no">STAR 04</span> · What's in the system</span>
+      <h2 class="section-heading">Everything to move from stuck to sonically honest.</h2>
+
+      <div class="inside-grid">
+        <div class="inside-item">
+          <span class="inside-numeral">I</span>
+          <div>
+            <h3 class="inside-title">Interactive Notion Workspace</h3>
+            <p class="inside-desc">Your digital song-journaling sanctuary. Duplicatable into your personal Notion with built-in emotional tracker, session logs, chord references, and prompt libraries.</p>
+          </div>
+        </div>
+        <div class="inside-item">
+          <span class="inside-numeral">II</span>
+          <div>
+            <h3 class="inside-title">The 22-Page Processing Workbook</h3>
+            <p class="inside-desc">Structured emotional excavation exercises. A printable companion guide breaking down the 7 emotional palettes, transition frameworks, and songwriting prompts.</p>
+          </div>
+        </div>
+        <div class="inside-item">
+          <span class="inside-numeral">III</span>
+          <div>
+            <h3 class="inside-title">The 7 Emotional Palettes &amp; "Star Notes"</h3>
+            <p class="inside-desc">Deep-dive into the characteristic color tone of each mode—the single note that unlocks the exact emotional shade you need.</p>
+          </div>
+        </div>
+        <div class="inside-item">
+          <span class="inside-numeral">IV</span>
+          <div>
+            <h3 class="inside-title">5 Structured Song Feeling Sessions</h3>
+            <p class="inside-desc">Step-by-step guided containers that walk you through a heavy emotion and deposit you directly into melodic or lyrical movement.</p>
+          </div>
+        </div>
+        <div class="inside-item">
+          <span class="inside-numeral">V</span>
+          <div>
+            <h3 class="inside-title">Listening Playlists &amp; Chord Charts</h3>
+            <p class="inside-desc">Curated reference playlists and chord voicings so you can hear and feel each mode immediately at your piano, guitar, or DAW.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════
+       NOTION SPOTLIGHT
+       ═══════════════════════════════════════════ -->
+  <section class="section reveal" id="workspace">
+    <div class="container page-container">
+      <span class="eyebrow"><span class="frame-no">STAR 05</span> · The digital studio</span>
+      <h2 class="section-heading">Your personal song-journaling sanctuary.</h2>
+      <div class="section-body">
+        <p>
+          Built natively in Notion, this isn't just a static PDF you read once. It’s an active,
+          duplicatable workspace where your emotional journal entries, voice memos, and chord
+          progressions live side by side.
+        </p>
+      </div>
+
+      <div class="preview-gallery" id="notion-gallery">
+        <div class="preview-card">
+          <img src="/images/starmap-notion-dashboard.webp" alt="The Emotional Star Map interactive Notion workspace dashboard" width="2026" height="1179" loading="lazy">
+          <div class="preview-caption">✦ Notion Workspace Hub — Step-by-step navigation, songwriting guides, and one-click duplication into your personal account.</div>
+        </div>
+
+        <div class="preview-card">
+          <img src="/images/starmap-seven-palettes.webp" alt="The Seven Emotional Palettes matrix in Notion" width="1392" height="908" loading="lazy">
+          <div class="preview-caption">✦ The 7 Emotional Palettes Matrix — Map where your feeling sits directly to its mode, sonic description, and beginner chord entry point.</div>
+        </div>
+
+        <div class="preview-card">
+          <img src="/images/starmap-palette-pages.webp" alt="Dedicated modal palette deep dive pages in Notion" width="555" height="285" loading="lazy">
+          <div class="preview-caption">✦ Dedicated Modal Pages — In-depth exploration, songwriting exercises, and journal prompts for each specific palette.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════
+       WHO THIS IS FOR
+       ═══════════════════════════════════════════ -->
+  <section class="section reveal">
+    <div class="container page-container">
+      <span class="eyebrow"><span class="frame-no">STAR 06</span> · Who this is for</span>
+      <h2 class="section-heading">You, if this describes your creative life.</h2>
+      <ul class="for-list">
+        <li>You write songs, but keep hitting walls where words can't capture the depth of the feeling.</li>
+        <li>You feel music deeply, but traditional theory feels sterile or disconnecting.</li>
+        <li>You have voice memos full of unfinished ideas that never found their harmonic home.</li>
+        <li>You want your creative practice to be a genuine vehicle for emotional release and healing.</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════
+       FAQ
+       ═══════════════════════════════════════════ -->
+  <section class="section reveal">
+    <div class="container page-container">
+      <span class="eyebrow"><span class="frame-no">STAR 07</span> · Questions</span>
+      <h2 class="section-heading">Before you begin.</h2>
+
+      <details class="faq-item">
+        <summary>Do I need to know formal music theory? <span class="faq-icon">+</span></summary>
+        <p class="faq-answer">
+          Not at all. The Emotional Star Map is specifically designed for people who feel music deeply,
+          regardless of formal training. If you can hum a melody or find notes on an instrument, you have
+          everything you need.
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary>What instruments or setups does this work with? <span class="faq-icon">+</span></summary>
+        <p class="faq-answer">
+          Any instrument you use to write or express: acoustic guitar, piano, synth, saxophone, DAW,
+          or just your voice and a journal. The system maps feelings to tonal centers, not to one specific instrument.
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary>How do I access the Notion workspace? <span class="faq-icon">+</span></summary>
+        <p class="faq-answer">
+          Immediately after checkout, you'll receive a digital download link with one-click access to duplicate
+          the template into your own free Notion account. You can customize, reorganize, or expand it however you like.
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Is this therapy or medical treatment? <span class="faq-icon">+</span></summary>
+        <p class="faq-answer">
+          No. While I am a state-certified peer support specialist and draw on lived experience in mental health,
+          The Emotional Star Map is an artistic and somatic journaling system for creative expression, not clinical therapy
+          or psychiatric treatment.
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary>How is the product delivered? <span class="faq-icon">+</span></summary>
+        <p class="faq-answer">
+          Instant digital download through Kit: the 22-page printable workbook PDF, the duplicatable Notion workspace
+          link, and curated modal playlist references. Yours to keep forever.
+        </p>
+      </details>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════
+       COMMUNITY
+       ═══════════════════════════════════════════ -->
+  <section class="section reveal">
+    <div class="container page-container" style="text-align:center;">
+      <span class="eyebrow" style="justify-content:center;"><span class="frame-no">STAR 08</span> · Community</span>
+      <h2 class="section-heading" style="margin-bottom: 14px;">Create alongside others.</h2>
+      <p class="section-body" style="max-width: 520px; margin: 0 auto 20px; font-size: 0.98rem;">
+        Join a circle of feeling-first musicians and songwriters diving into modal sound, emotional honesty, and presence.
+        It's free.
+      </p>
+      <p style="margin: 0;">
+        <a href="https://www.skool.com/meditative-musicians-6593/about" target="_blank" rel="noopener" style="color: var(--violet); text-decoration: none; border-bottom: 1px solid rgba(var(--violet-rgb),0.35); padding-bottom: 2px; font-size: 0.92rem;">Join the Meditative Musicians community on Skool →</a>
+      </p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════
+       PRICE + CTA
+       ═══════════════════════════════════════════ -->
+  <section class="section reveal">
+    <div class="container page-container">
+      <div class="frame-card frame-card--lit price-block">
+        <div class="frame-card__bar"><span>Frame 09</span><span class="tag">Checkout</span></div>
+        <div class="frame-card__body">
+          <p class="price-product-name">The Emotional Star Map: Songwriter's Edition</p>
+          <div class="price-amount">$27</div>
+          <p class="price-details">
+            Interactive Notion Workspace &nbsp;·&nbsp; 22-Page Workbook (PDF)<br>
+            5 Guided Song Sessions &nbsp;·&nbsp; Curated Modal Playlists<br>
+            Instant digital download &nbsp;·&nbsp; No subscription &nbsp;·&nbsp; Yours to keep
+          </p>
+          <div class="cta-wrap">
+            <a class="btn-primary" href="https://titosilversax.kit.com/products/the-emotional-star-map" data-commerce>Get the Full System — $27</a>
+          </div>
+          <p class="cta-alt" style="text-align:center;">
+            <a href="https://titosilversax.kit.com/freeguide" target="_blank" rel="noopener">Want to start smaller? Get the free 6-page guide →</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════ -->
+  <footer class="footer reveal">
+    <div class="container page-container">
+      <p class="footer-text">
+        Secure checkout via Kit &nbsp;·&nbsp;
+        Questions? <a href="mailto:hello@titosilversax.com">hello@titosilversax.com</a><br>
+        <a href="/legal#terms">Terms of Use</a> &nbsp;·&nbsp; <a href="/legal#privacy">Privacy Policy</a> &nbsp;·&nbsp;
+        <a href="https://www.skool.com/meditative-musicians-6593/about" target="_blank" rel="noopener">Community</a><br>
+        &copy; 2026 Alberto Martir / Tito Silversax. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scroll reveal -->
+  <script>
+    (function() {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.reveal').forEach(function(el) {
+        observer.observe(el);
+      });
+    })();
+  </script>
+
+</body>
+</html>

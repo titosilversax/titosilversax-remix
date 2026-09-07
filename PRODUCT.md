@@ -27,7 +27,7 @@ Tito combines two things a typical music-education product or a typical wellness
 - `api/kit-purchase.js`: a Vercel serverless function bridging Kit's purchase webhook to Meta's Conversions API for server-side ad attribution (requires `META_CAPI_ACCESS_TOKEN` and `KIT_WEBHOOK_SECRET` env vars).
 - Community lives on Skool ("Meditative Musicians"), linked from the site, not hosted on it.
 - Socials: YouTube, Instagram, Bandcamp (all @titosilversax).
-- Site structure: `/home` (artist bio/about, redirected from `/`), `/offers` (product hub, renamed from `/offerings`), `/compendium` and `/practice` (dedicated product pages), `/privacy`, `/terms`, plus `/thank-you` and `/thank-you-practice` funnel pages.
+- Site structure: `/home` (artist bio/about, redirected from `/`), `/offers` (product hub, renamed from `/offerings`), `/compendium`, `/practice`, and `/starmap` (dedicated product pages), `/privacy`, `/terms`, plus `/thank-you` and `/thank-you-practice` funnel pages.
 - The site previously existed under a different concept, "Tito Dreaming With Me," framed around peer support/healing first; it was renamed to the current ambient-saxophonist framing (commit: "Rename /titodreamingwithme to /home"). Old URLs 301-redirect to the new structure. Treat the peer-support framing as real but secondary per the confirmed emphasis, not as the site's identity to restore.
 
 ## Capabilities and Constraints
